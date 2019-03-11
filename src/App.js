@@ -4,7 +4,7 @@ import { Navbar } from "./Components/layout/Navbar";
 import Dashboard from "./Components/dashboard/Dashboard";
 import PostDetails from "./Components/posts/PostDetails";
 import SignIn from "./Components/auth/SignIn";
-import SignOut from "./Components/auth/SignOut";
+import SignUp from "./Components/auth/SignUp";
 import CreatePost from "./Components/posts/CreatePost";
 
 class App extends Component {
@@ -17,7 +17,7 @@ class App extends Component {
             <Route exact path="/" component={Dashboard} />
             <Route path="/project/:id" component={PostDetails} />
             <Route path="/signin" component={SignIn} />
-            <Route path="/signout" component={SignOut} />
+            <Route path="/signup" component={SignUp} />
             <Route path="/createPost" component={CreatePost} />
           </Switch>
         </div>
