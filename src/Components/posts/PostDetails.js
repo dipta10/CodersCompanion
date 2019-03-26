@@ -4,7 +4,6 @@ import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 
 const PostDetails = props => {
-  const id = props.match.params.id;
   const project = props.project;
   console.log(project);
   if (project != null) {

@@ -7,7 +7,6 @@ export class SignIn extends Component {
     email: "",
     password: ""
   };
-  something = e => {};
   handleChange = e => {
     this.setState({
       [e.target.id]: e.target.value
@@ -17,6 +16,7 @@ export class SignIn extends Component {
     e.preventDefault();
     this.props.signIn(this.state);
   };
+
   render() {
     const authError = this.props.authError;
     return (
@@ -46,8 +46,8 @@ export class SignIn extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     signIn: (creds) => dispatch(signIn(creds)),
-  }
-}
+  };
+};
 
 const mapStateToProps = (state) => {
   return {
