@@ -18,7 +18,7 @@ const projectReducer = (state = initState, action) => {
       console.log('create project error!', action.err);
       return state;
     default:
-      console.log('error in projectReducer.js in the default case');
+      return state;
   }
 
   return state;
