@@ -14,6 +14,9 @@ const projectReducer = (state = initState, action) => {
     case keyword.createProjectActionType:
       console.log('created project', action.project);
       break;
+    case keyword.createProjectErrorActionType:
+      console.log('create project error!', action.err);
+      return state;
     default:
       console.log('error in projectReducer.js in the default case');
   }
