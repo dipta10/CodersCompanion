@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux'
+import { createProject } from "../../store/actions/projectActions";
 
 export class CreatePost extends Component {
   state = {
     title: "",
     content: ""
   };
-  something = e => {};
   handleChange = e => {
     this.setState({
       [e.target.id]: e.target.value
@@ -14,6 +15,7 @@ export class CreatePost extends Component {
   handleSubmit = e => {
     e.preventDefault();
     console.log(this.state);
+    this.props.createProjectActionType(this.state);
   };
   render() {
     return (
@@ -41,4 +43,10 @@ export class CreatePost extends Component {
   }
 }
 
-export default CreatePost;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createProjectActionType: (project) => dispatch(createProject(project))
+  };
+}
+
+export default connect(null, mapDispatchToProps)(CreatePost);
