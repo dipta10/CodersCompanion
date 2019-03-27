@@ -14,6 +14,7 @@ export class Dashboard extends Component {
 
     const auth = this.props.auth;
     if (!auth.uid) return <Redirect to='/signin'/>;
+    const { notifications } = this.props;
 
     return (
       <div className="dashboard container">
@@ -28,7 +29,7 @@ export class Dashboard extends Component {
           </div>
           {/*<div className="col s12 m5 offset-m1">*/}
           <div className="col s12 m12">
-            <Notifications />
+            <Notifications notifications={notifications}/>
           </div>
         </div>
       </div>
@@ -39,13 +40,15 @@ export class Dashboard extends Component {
 const mapStateToProps = (state) => {
   return {
     project: state.firestore.ordered.posts,
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    notifications: state.firestore.ordered.notifications
   }
 }
 
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
-    {collection: 'posts'}
+    {collection: 'posts', orderBy: ['creationTime', 'desc']},
+    {collection: 'notifications', limit: 5, orderBy: ['time', 'desc']}
   ])
 )(Dashboard);

@@ -30,3 +30,4 @@ export default connect(mapStateToProps)(Navbar);
 ```
 
 *   Security
+*   Cloud Function
