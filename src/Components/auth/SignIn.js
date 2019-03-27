@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
 import {signIn} from "../../store/actions/authActions";
+import { Link } from "react-router-dom";
+import {linkurl} from "../../keyword";
 
 export class SignIn extends Component {
   state = {
@@ -18,6 +20,8 @@ export class SignIn extends Component {
   };
 
   render() {
+    console.log(this.props);
+
     const authError = this.props.authError;
     return (
       <div className="container">
@@ -32,9 +36,16 @@ export class SignIn extends Component {
             <input type="password" id="password" onChange={this.handleChange} />
           </div>
           <div className="input-field">
-            <button className="btn pink lighten-1 z-depth-0">Login</button>
+            <div className="center">
+              <button className="btn pink lighten-1 z-depth-0">Login</button>
+            </div>
             <div className="red-text center">
               { authError ? <p>Login Failed! Wrong email/password!</p> : null}
+            </div>
+            <div className="red-text center">
+              <Link to={linkurl.signUp}>
+                <p className="red-text">Create Account?</p>
+              </Link>
             </div>
           </div>
         </form>
@@ -51,7 +62,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    authError: state.auth.authError,
+    ...state,
+    authError: state.auth.authError
   }
 }
 

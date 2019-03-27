@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { Navbar } from "./Components/layout/Navbar";
 import Dashboard from "./Components/dashboard/Dashboard";
 import PostDetails from "./Components/posts/PostDetails";
 import SignIn from "./Components/auth/SignIn";
 import SignUp from "./Components/auth/SignUp";
 import CreatePost from "./Components/posts/CreatePost";
+import Navbar from "./Components/layout/Navbar";
+import {linkurl} from "./keyword";
 
 class App extends Component {
   render() {
@@ -14,16 +15,17 @@ class App extends Component {
         <div className="App">
           <Navbar />
           <Switch>
-            <Route exact path="/" component={Dashboard} />
-            <Route path="/post/:id" component={PostDetails} />
-            <Route path="/signin" component={SignIn} />
-            <Route path="/signup" component={SignUp} />
-            <Route path="/createPost" component={CreatePost} />
+            <Route exact path={linkurl.root} component={Dashboard} />
+            <Route path={linkurl.post} component={PostDetails} />
+            <Route path={linkurl.signIn} component={SignIn} />
+            <Route path={linkurl.signUp} component={SignUp} />
+            <Route path={linkurl.createPost} component={CreatePost} />
           </Switch>
         </div>
       </BrowserRouter>
     );
   }
 }
+
 
 export default App;

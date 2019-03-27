@@ -11,7 +11,7 @@ const SignedInLinks = (props) => {
         <NavLink to="/createPost">New Post</NavLink>
       </li>
       <li>
-        <a onClick={() => handleLogout(props)}>Log Out</a>
+        <a href='/' onClick={() => handleLogout(props)}>Log Out</a>
       </li>
       <li>
         <NavLink to="/" className="btn btn-floating pink lighten-1">
