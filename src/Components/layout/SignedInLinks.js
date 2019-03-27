@@ -2,20 +2,21 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 import {connect} from 'react-redux'
 import {signOut} from "../../store/actions/authActions";
+import {linkurl} from "../../keyword";
 
 const SignedInLinks = (props) => {
 
   return (
     <ul className="right">
       <li>
-        <NavLink to="/createPost">New Post</NavLink>
+        <NavLink to={linkurl.createPost}>New Post</NavLink>
       </li>
       <li>
         <a href='/' onClick={() => handleLogout(props)}>Log Out</a>
       </li>
       <li>
         <NavLink to="/" className="btn btn-floating pink lighten-1">
-          NN
+          {props.profile.initial}
         </NavLink>
       </li>
     </ul>

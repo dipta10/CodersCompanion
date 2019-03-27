@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import messi from "../../messi.jpg"
+import moment from 'moment'
 
 export class PostSummary extends Component {
   render() {
@@ -27,7 +28,7 @@ export class PostSummary extends Component {
               <div className="row">
                 <div className="col m6">
                   <span className="title">{project.username}</span><br/>
-                  <span className="grey-text m5">23rd March, 2019</span>
+                  <span className="grey-text m5">{moment(project.creationTime.toDate().toString()).calendar()}</span>
                 </div>
                 <div className="right col m6">
                   <span to="" className="right"><i className="material-icons">arrow_downward</i></span>

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux'
 import { createProject } from "../../store/actions/projectActions";
 import { Redirect } from 'react-router-dom'
+import {keyword, linkurl} from "../../keyword";
 
 export class CreatePost extends Component {
   state = {
@@ -16,11 +17,12 @@ export class CreatePost extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.createProjectActionType(this.state);
+    this.props.history.push(linkurl.dashboard);
   };
   render() {
 
     const auth = this.props.auth;
-    if (!auth.uid) return <Redirect to='/signin'/>;
+    if (!auth) return <Redirect to='/signin'/>;
 
     return (
       <div className="container">

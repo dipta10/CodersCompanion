@@ -23,7 +23,6 @@ export class SignUp extends Component {
     this.props.signUp(this.state);
   };
   render() {
-    console.log('state', this.state);
     const auth = this.props.auth;
     const authError = this.props.authError;
     console.log('auth', auth);

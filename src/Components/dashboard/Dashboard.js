@@ -11,7 +11,6 @@ export class Dashboard extends Component {
   render() {
     const projects = this.props.project;
 
-    console.log('your auth: ', this.props);
 
     const auth = this.props.auth;
     if (!auth.uid) return <Redirect to='/signin'/>;

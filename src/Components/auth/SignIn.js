@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
 import {signIn} from "../../store/actions/authActions";
+import { Redirect } from 'react-router-dom'
 import { Link } from "react-router-dom";
 import {linkurl} from "../../keyword";
 
@@ -20,7 +21,9 @@ export class SignIn extends Component {
   };
 
   render() {
-    console.log(this.props);
+    const auth = this.props.auth ;
+    console.log('auth', auth);
+    if (auth.uid) return <Redirect to={linkurl.dashboard}/>;
 
     const authError = this.props.authError;
     return (
@@ -63,7 +66,8 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     ...state,
-    authError: state.auth.authError
+    authError: state.auth.authError,
+    auth: state.firebase.auth,
   }
 }
 
