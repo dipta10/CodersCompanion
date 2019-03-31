@@ -20,17 +20,13 @@ export class Navbar extends Component {
 
     return (
       <div>
-        <nav className="nav-wrapper blue-grey darken-3">
-          <div className="container">
-            <Link to={linkurl.root} className="brand-logo left hide-on-med-and-down">
-              Coders Companion
-            </Link>
-            <Link to={linkurl.root} className="brand-logo blue-text text-lighten-4 left show-on-medium">
-              Code'Comp
-            </Link>
+            {/*<Link to={linkurl.root} className="brand-logo left hide-on-med-and-down">*/}
+              {/*Coders Companion*/}
+            {/*</Link>*/}
+            {/*<Link to={linkurl.root} className="brand-logo blue-text text-lighten-4 left show-on-medium">*/}
+              {/*Code'Comp*/}
+            {/*</Link>*/}
             {links}
-          </div>
-        </nav>
       </div>
     );
   }

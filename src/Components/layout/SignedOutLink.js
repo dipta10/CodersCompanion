@@ -1,18 +1,33 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import {linkurl} from "../../keyword";
+import {Link} from 'react-router-dom';
+import {Menu} from 'semantic-ui-react'
 
 export class SignedOutLink extends Component {
+  state = {activeItem: 'home'};
+  handleItemClick = (e, {name}) => this.setState({activeItem: name});
   render() {
+    const {activeItem} = this.state;
     return (
       <div>
-        <ul className="right">
-          <li>
-            <NavLink to="/signup">Sign Up</NavLink>
-          </li>
-          <li>
-            <NavLink to="/signin">Log In</NavLink>
-          </li>
-        </ul>
+        <Menu pointing secondary>
+          {/*<Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick}/>*/}
+          <Link to={linkurl.dashboard}>
+            <Menu.Item
+              name='Sign In'
+              active={activeItem === 'Sign In'}
+              onClick={this.handleItemClick}
+            />
+          </Link>
+          <Link to={linkurl.createPost}>
+            <Menu.Item
+              name='Sign Up'
+              active={activeItem === 'Sign Up'}
+              onClick={this.handleItemClick}
+            />
+          </Link>
+        </Menu>
       </div>
     );
   }

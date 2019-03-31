@@ -5,7 +5,9 @@ export const keyword = {
   loginError: 'LOGIN_ERROR',
   signoutSuccess: 'SIGN_OUT_SUCCESS',
   signupSuccess: 'SIGN_UP_SUCCESS',
-  signupError: 'SIGNUP_ERROR'
+  signupError: 'SIGNUP_ERROR',
+  createPostCommentActionType: 'CREATE_POST_COMMENT',
+  createPostCommentErrorType: 'CREATE_POST_COMMENT_ERROR',
 };
 
 
@@ -15,5 +17,8 @@ export const linkurl = {
   signUp: "/signup",
   createPost: "/createPost",
   root: "/",
-  dashboard: "/"
+  dashboard: "/",
+  notifications: "/notifications"
 };
+
+export const newline_firebase = "%20NEW_LINE19382%";

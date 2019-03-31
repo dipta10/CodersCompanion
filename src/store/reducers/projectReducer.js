@@ -19,6 +19,12 @@ const projectReducer = (state = initState, action) => {
       return state;
     default:
       return state;
+    case keyword.createPostCommentActionType:
+      console.log('created comment in POST');
+      return state;
+    case keyword.createPostCommentErrorType:
+      console.log('ERROR creating comment!', action.err);
+      return state;
   }
 
   return state;

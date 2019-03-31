@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import {linkurl} from "../../keyword";
-import {signIn, signUp} from "../../store/actions/authActions";
+import {signUp} from "../../store/actions/authActions";
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 

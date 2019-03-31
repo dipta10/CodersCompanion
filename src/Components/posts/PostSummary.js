@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import messi from "../../messi.jpg"
 import moment from 'moment'
 
@@ -14,6 +13,7 @@ export class PostSummary extends Component {
     const box = {
       border: '2px solid red'
     };
+
 
     return (
 

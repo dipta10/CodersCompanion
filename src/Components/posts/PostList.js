@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 export class PostList extends Component {
   render() {
     const projects = this.props.projects;
+    console.log('postlist', projects);
     return (
       <div className="project-list section">
         { projects && projects.map ( project => {

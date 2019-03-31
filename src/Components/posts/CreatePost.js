@@ -3,11 +3,9 @@ import {connect} from 'react-redux'
 import {createProject} from "../../store/actions/projectActions";
 import {Redirect} from 'react-router-dom'
 import MarkdownRenderer from 'react-markdown-renderer';
-import {keyword, linkurl} from "../../keyword";
+import {keyword, linkurl, newline_firebase} from "../../keyword";
 import TextareaAutosize from 'react-textarea-autosize';
-import { Form, TextArea } from 'semantic-ui-react'
-
-
+import { Button, Divider, Header, Image, Segment, Form, TextArea } from 'semantic-ui-react'
 
 export class CreatePost extends Component {
   state = {
@@ -21,7 +19,14 @@ export class CreatePost extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    this.props.createProjectActionType(this.state);
+    let con = this.state.content.replace(/\n/g, newline_firebase);
+    this.setState({
+      ... this.state,
+      content: con,
+    });
+
+
+    this.props.createProjectActionType({...this.state, content: con});
     this.props.history.push(linkurl.dashboard);
   };
 
@@ -31,47 +36,25 @@ export class CreatePost extends Component {
     if (auth.uid == null) return <Redirect to='/signin'/>;
 
     return (
-      <div className="">
-        <Form onSubmit={this.handleSubmit} className="white ">
-          <h5 className="grey-text text-darken-3 center">Create New Post</h5>
-          <div className="row">
-            <div className="col s12 m6">
-              <div className="input-field">
-                <label htmlFor="title">Title</label>
-                <input type="text" id="title" onChange={this.handleChange}/>
-              </div>
-              <div className="input-field">
-                {/*<label htmlFor="">Post Content</label>*/}
-                <textarea
-                  className="materialize-textarea"
-                  rows={100}
-                  cols={100}
-                  aria-expanded={true}
-                  id="content"
-                  onChange={this.handleChange}
-                  style={{ height: 200 }}
-                  value={this.state.content}
-                />
-              </div>
-            </div>
-            <div className=" col s12 m6">
-              {/*<label htmlFor="password">MD Render</label>*/}
-              {/*<textarea*/}
-                {/*disabled={true}*/}
-                {/*className="materialize-textarea black-text"*/}
-                {/*id="content"*/}
-                {/*onChange={this.handleChange}*/}
-                {/*value="skip"*/}
-              {/*/>*/}
-              <div className="card">
-                <MarkdownRenderer markdown={this.state.content} />
-              </div>
-            </div>
-          </div>
-          <div className="input-field">
-            <button className="btn pink lighten-1 z-depth-0">Submit</button>
-          </div>
-        </Form>
+      <div>
+        <Segment>
+          <Form>
+            <TextArea rows={2} placeholder='Title' onChange={this.handleChange} value={this.state.title} id='title' />
+          </Form>
+          <br/>
+          <Form>
+            <TextArea placeholder='Details' onChange={this.handleChange} value={this.state.content} id='content' style={{ minHeight: 100 }} />
+          </Form>
+          <Divider fitted />
+          <Divider horizontal>Markdown Rendering</Divider>
+
+        </Segment>
+
+        <MarkdownRenderer markdown={this.state.content} />
+
+        <Divider horizontal>
+          <Button primary onClick={this.handleSubmit} >Submit</Button>
+        </Divider>
       </div>
     );
   }
