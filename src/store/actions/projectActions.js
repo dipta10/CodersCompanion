@@ -87,23 +87,20 @@ export const createPostCommentReply = (comment, parentChild) => {
       userId: userid,
       creationTime: new Date(),
     }).then((res) => {
-      console.log('response', res);
 
       firestore.collection('comments').doc(res.id).update({
         id: res.id,
       });
 
-      parentChild.push(res.id);
 
       firestore.collection('comments').doc(comment.parent).update({
-        child: parentChild,
+        child: parentChild.concat(res.id),
       });
 
       dispatch({
         type: keyword.createPostCommentReplyActionType, comment: comment
       });
     }).catch((err) => {
-      console.log('inside the error catch');
       dispatch(
         {
           type: keyword.createPostCommentReplyErrorType,

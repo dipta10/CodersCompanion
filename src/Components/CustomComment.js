@@ -12,7 +12,7 @@ class CustomComment extends Component {
   state = {
     show: false,
     content: "",
-    childComment: [],
+    child: [],
   };
 
   handleShowComment = () => {
@@ -22,8 +22,8 @@ class CustomComment extends Component {
   };
 
   handelAddReply = (mycomment) => {
+    console.log('mycomment', mycomment);
     const commentId = this.props.id;
-    console.log('my comment', mycomment);
     if (mycomment.type === 'post') {
       // post
       const uploadState = {
@@ -32,8 +32,8 @@ class CustomComment extends Component {
         type: 'post',
         parent: commentId,
         postId: mycomment.postId,
-      }
-      this.props.createPostCommentReply(uploadState, mycomment.child);
+      };
+      this.props.all.createPostCommentReply && this.props.all.createPostCommentReply(uploadState, mycomment.child);
 
     } else {
       // answer
@@ -103,14 +103,28 @@ class CustomComment extends Component {
             </Comment.Actions>
             {this.state.show ?
               <Form reply>
-                <Form.TextArea value={this.state.content} id="content" onChange={this.handleChange} style={{height: '60px'}}/>
-                <Button onClick={() => this.handelAddReply(mycomment)} content='Add Reply' labelPosition='right' icon='edit' primary/>
+                <Form.TextArea value={this.state.content} id="content" onChange={this.handleChange}
+                               style={{height: '60px'}}/>
+                <Button onClick={() => this.handelAddReply(mycomment)} content='Add Reply' labelPosition='right'
+                        icon='edit' primary/>
 
                 <br/>
                 <br/>
                 <br/>
               </Form>
               : null}
+
+            {
+              this.props.comments && this.props.comments.map(comment => {
+                return (comment.id == this.props.id && comment.child && comment.child.map(id => {
+                  return (
+                    <CustomComment comments={this.props.comments} id={id} all={this.props.all}/>
+                  )
+                }))
+              })
+            }
+
+
           </Comment.Content>
         </Comment>
 
@@ -129,7 +143,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createPostCommentReply: (comment, parentChild) => dispatch(createPostCommentReply(comment, parentChild))
+    // createPostCommentReply: (comment, parentChild) => dispatch(createPostCommentReply(comment, parentChild))
   };
 }
 
@@ -153,4 +167,12 @@ export default compose(
 //   : null }
 
 
-
+// {
+//   mycomment.child && mycomment.child.length > 0 && mycomment.child.map(id => {
+//     return (
+//       <Comment.Group>
+//         <CustomComment comments={this.props.comments} id={id} />
+//       </Comment.Group>
+//     )
+//   })
+// }

@@ -6,7 +6,7 @@ import moment from 'moment'
 import {newline_firebase} from "../../keyword";
 import MarkdownRenderer from 'react-markdown-renderer';
 import {Button, Comment, Form, Header, Loader, Image, Segment} from 'semantic-ui-react'
-import {createComment} from "../../store/actions/projectActions";
+import {createComment, createPostCommentReply} from "../../store/actions/projectActions";
 import CustomComment from "../CustomComment";
 const queryable = require('query-objects');
 
@@ -57,6 +57,7 @@ export class PostDetails extends Component {
     this.setState({
       ...this.state,
       postComment: {
+        ...this.state.postComment,
         content: "",
       },
     });
@@ -106,7 +107,7 @@ export class PostDetails extends Component {
 
           {res && res.map(comment => {
             return(
-              <CustomComment comments={comments} id={comment.id} key={comment.id} />
+              <CustomComment comments={comments} id={comment.id} key={comment.id} all={this.props} />
             );
           })}
 
@@ -140,7 +141,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createPostCommentActionType: (comment, postId) => dispatch(createComment(comment, postId))
+    createPostCommentActionType: (comment, postId) => dispatch(createComment(comment, postId)),
+    createPostCommentReply: (comment, parentChild) => dispatch(createPostCommentReply(comment, parentChild))
   };
 }
 

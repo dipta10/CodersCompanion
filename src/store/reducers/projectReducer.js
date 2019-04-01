@@ -29,7 +29,7 @@ const projectReducer = (state = initState, action) => {
       console.log('Created a post comment reply comment!', state);
       return state;
     case keyword.createPostCommentReplyErrorType:
-      console.log('Error creating post comment reply comment');
+      console.log('Error creating post comment reply comment', action.err);
       return state;
   }
 
