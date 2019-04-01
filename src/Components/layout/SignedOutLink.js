@@ -20,7 +20,7 @@ export class SignedOutLink extends Component {
               onClick={this.handleItemClick}
             />
           </Link>
-          <Link to={linkurl.createPost}>
+          <Link to={linkurl.signUp}>
             <Menu.Item
               name='Sign Up'
               active={activeItem === 'Sign Up'}

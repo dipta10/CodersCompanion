@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "filter-objects": "^2.1.1",
     "firebase": "^5.9.1",
     "materialize-css": "^1.0.0-rc.2",
     "moment": "^2.24.0",
+    "query-objects": "0.0.6",
     "react": "^16.8.5",
     "react-dom": "^16.8.4",
     "react-markdown": "^4.0.6",

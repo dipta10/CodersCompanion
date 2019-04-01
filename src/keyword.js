@@ -8,6 +8,8 @@ export const keyword = {
   signupError: 'SIGNUP_ERROR',
   createPostCommentActionType: 'CREATE_POST_COMMENT',
   createPostCommentErrorType: 'CREATE_POST_COMMENT_ERROR',
+  createPostCommentReplyActionType: 'CREATE_POST_COMMENT_REPLY',
+  createPostCommentReplyErrorType: 'CREATE_POST_COMMENT_REPLY_ERROR',
 };
 
 

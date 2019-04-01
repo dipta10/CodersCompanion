@@ -7,6 +7,9 @@ import {newline_firebase} from "../../keyword";
 import MarkdownRenderer from 'react-markdown-renderer';
 import {Button, Comment, Form, Header, Loader, Image, Segment} from 'semantic-ui-react'
 import {createComment} from "../../store/actions/projectActions";
+import CustomComment from "../CustomComment";
+const queryable = require('query-objects');
+
 
 export class PostDetails extends Component {
 
@@ -63,16 +66,24 @@ export class PostDetails extends Component {
   render() {
 
     const { project, comments, postid } = this.props;
-    console.log('postid is', postid);
 
-    if (comments) comments.map((comment) => {
-      if (comment.postId === this.props.postid) {
-        console.log('comment is:', comment.content);
-      } else {
-        console.log('no comment :(');
-      }
-    });
-
+    const filters = [
+      {
+        field: 'postId',
+        value: postid,
+        operator: 'equals'
+      },
+      {
+        field: 'parent',
+        value: null,
+        operator: 'equals',
+        matchEmpty: true,
+      },
+    ];
+    var res = null;
+    if (comments) {
+      res = queryable(comments).and(filters);
+    }
 
     if (project != null) {
       return (
@@ -91,6 +102,14 @@ export class PostDetails extends Component {
             <Form.TextArea value={this.state.postComment.content} onChange={this.handlePostCommentChange} id={"postComment"} placeholder={"Create a comment"} style={{height: '60px'}}/>
             <Button onClick={this.handlePostCommentSubmit} content='Add comment' labelPosition='left' icon='edit' primary/>
           </Form>
+          <br/>
+
+          {res && res.map(comment => {
+            return(
+              <CustomComment comments={comments} id={comment.id} key={comment.id} />
+            );
+          })}
+
         </div>
       )
     }

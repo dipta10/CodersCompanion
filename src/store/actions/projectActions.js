@@ -11,7 +11,13 @@ export const createProject = (project) => {
       username: profile.firstName + ' ' + profile.lastName,
       userId: userid,
       creationTime: new Date()
-    }).then(() => {
+    }).then((res) => {
+
+
+      firestore.collection('posts').doc(res.id).update({
+        id: res.id,
+      });
+
       dispatch({
         type: keyword.createProjectActionType, project: project
       });
@@ -40,7 +46,15 @@ export const createComment = (comment, postId) => {
       userId: userid,
       creationTime: new Date(),
       postId: postId
-    }).then(() => {
+    }).then((res) => {
+
+
+      firestore.collection('comments').doc(res.id).update({
+        id: res.id,
+      });
+
+
+
       dispatch({
         type: keyword.createPostCommentActionType, comment: comment
       });
@@ -52,6 +66,53 @@ export const createComment = (comment, postId) => {
         }
       );
     });
+
+  };
+}
+
+
+
+export const createPostCommentReply = (comment, parentChild) => {
+  return (dispatch, getState, {getFirebase, getFirestore}) => {
+    // make async call to database
+    const firestore = getFirestore();
+    const profile = getState().firebase.profile; // no 30
+    const userid = getState().firebase.auth.uid;
+
+    const refid = firestore.collection('comments').doc().id;
+
+    firestore.collection('comments').add({
+      ...comment,
+      username: profile.firstName + ' ' + profile.lastName,
+      userId: userid,
+      creationTime: new Date(),
+    }).then((res) => {
+      console.log('response', res);
+
+      firestore.collection('comments').doc(res.id).update({
+        id: res.id,
+      });
+
+      parentChild.push(res.id);
+
+      firestore.collection('comments').doc(comment.parent).update({
+        child: parentChild,
+      });
+
+      dispatch({
+        type: keyword.createPostCommentReplyActionType, comment: comment
+      });
+    }).catch((err) => {
+      console.log('inside the error catch');
+      dispatch(
+        {
+          type: keyword.createPostCommentReplyErrorType,
+          err: err
+        }
+      );
+    });
+
+
 
   };
 }
