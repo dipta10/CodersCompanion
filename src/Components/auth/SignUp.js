@@ -10,8 +10,16 @@ export class SignUp extends Component {
     email: "",
     password: "",
     firstName: "",
-    lastName: ""
+    lastName: "",
+    upVote: 0,
+    downVote: 0,
+    reputation: 0,
+    description: "",
+    status: 1,
   };
+  // 1 = active
+  // 2 = inactive
+  // 3 = banned
   something = e => {};
   handleChange = e => {
     this.setState({

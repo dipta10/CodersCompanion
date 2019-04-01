@@ -33,6 +33,11 @@ class CustomComment extends Component {
         parent: commentId,
         postId: mycomment.postId,
       };
+
+      this.setState({
+        show: false,
+      });
+
       this.props.all.createPostCommentReply && this.props.all.createPostCommentReply(uploadState, mycomment.child);
 
     } else {

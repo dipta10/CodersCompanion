@@ -1,0 +1,28 @@
+Probem with DFS, when there's a self loop.
+
+# This is a test post
+Now here is my code:
+```cpp
+#include <iostream>
+#include <stdio.h>
+
+using namespace std;
+
+const int mx = 1e5;
+vector<int> adj[mx];
+
+void dfs (source) {
+    // ... rest of the code
+}
+
+int main() {
+    dfs(some_node);
+
+    reutrn 0;
+}
+```
+1. I've done this.
+1. I've done that.
+1. And that as well
+
+but nothing is working. I got help from [LoveExtendsCode](https://www.youtube.com/c/loveextendscode).

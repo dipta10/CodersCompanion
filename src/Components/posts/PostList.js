@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import PostSummary from "./PostSummary";
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {Grid, Placeholder} from 'semantic-ui-react'
+import {Grid, Card, Placeholder} from 'semantic-ui-react'
 
 
 export class PostList extends Component {
@@ -47,15 +47,13 @@ export class PostList extends Component {
     const projects = this.props.projects;
 
     if (projects) return (
-      <Grid celled='internally'>
+      <Card.Group style={{marginLeft: "20px"}}>
         {projects && projects.map(project => {
           return (
-            <Link to={'/post/' + project.id} key={project.id}>
               <PostSummary project={project} key={project.id} name='dipta'/>
-            </Link>
           );
         })};
-      </Grid>
+      </Card.Group>
     ); else {
       return this.PlaceholderExamplePlaceholder();
     }

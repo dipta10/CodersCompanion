@@ -10,7 +10,10 @@ import { Button, Divider, Header, Image, Segment, Form, TextArea } from 'semanti
 export class CreatePost extends Component {
   state = {
     title: "",
-    content: ""
+    content: "",
+    upVote: 0,
+    downVote: 0,
+    score: 0,
   };
   handleChange = e => {
     this.setState({
