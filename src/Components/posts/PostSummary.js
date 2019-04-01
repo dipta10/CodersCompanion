@@ -1,24 +1,21 @@
 import React, { Component } from "react";
 import messi from "../../messi.jpg"
 import moment from 'moment'
+import { Grid, Image, Button, Card  } from 'semantic-ui-react'
+
+
+
 
 export class PostSummary extends Component {
   render() {
     // const project = this.props.project;
 
     const {project} = this.props;
-    const divStyle = {
-      marginTop: '10px',
-    };
-    const box = {
-      border: '2px solid red'
-    };
-
 
     return (
 
 
-      <div className="project-list section" >
+      <div className="project-list section">
         <ul className="collection">
           <li className="collection-item avatar">
             <img src={messi} alt="" className="circle"/>
@@ -41,15 +38,16 @@ export class PostSummary extends Component {
             </div>
 
 
-              <div className="">
-                <div className='card-title' style={{marginTop: '10px', marginBottom: '10px'}}>
-                  <p className="black-text">{project.title}</p>
-                </div>
-                <div style={{marginTop: '10px', marginBottom: '10px'}}>
-                  <p className="card-content black-text">{project.content}
-                    <br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus dolores ea error fugiat laboriosam maxime molestias porro quia veniam, vitae!</p>
-                </div>
+            <div className="">
+              <div className='card-title' style={{marginTop: '10px', marginBottom: '10px'}}>
+                <p className="black-text">{project.title}</p>
               </div>
+              <div style={{marginTop: '10px', marginBottom: '10px'}}>
+                <p className="card-content black-text">{project.content}
+                  <br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus dolores ea error fugiat
+                  laboriosam maxime molestias porro quia veniam, vitae!</p>
+              </div>
+            </div>
 
             <div className="">
               <div className="chip">Dijkstra</div>
@@ -62,22 +60,9 @@ export class PostSummary extends Component {
       </div>
 
 
-
     );
   }
 }
 
 export default PostSummary;
 
-/*
-
-      <div className="project-list section">
-        <div className="card z-depth-0 project-summary">
-          <div className="card-content grey-text text-darken-3">
-            <span className="card-title">{project.title}</span>
-            <p className="">Posted by {project.username}</p>
-            <p className="grey-text">{project.content}</p>
-          </div>
-        </div>
-      </div>
- */

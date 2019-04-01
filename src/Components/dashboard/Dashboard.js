@@ -28,9 +28,6 @@ export class Dashboard extends Component {
             <PostList projects={projects}/>
           </div>
           {/*<div className="col s12 m5 offset-m1">*/}
-          <div className="col s12 m12">
-            <Notifications notifications={notifications}/>
-          </div>
         </div>
       </div>
     );

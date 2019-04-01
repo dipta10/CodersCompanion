@@ -3,10 +3,14 @@ import moment from 'moment'
 import { connect } from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
+import { Redirect } from 'react-router-dom'
 
 export class Notifications extends Component {
   render() {
     const { notifications } = this.props;
+
+    const auth = this.props.auth;
+    if (!auth.uid) return <Redirect to='/signin'/>;
 
     return (
       <div className="container">

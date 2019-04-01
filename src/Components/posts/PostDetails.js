@@ -5,7 +5,7 @@ import {compose} from 'redux'
 import moment from 'moment'
 import {newline_firebase} from "../../keyword";
 import MarkdownRenderer from 'react-markdown-renderer';
-import {Button, Comment, Form, Header, Loader, Image, Segment} from 'semantic-ui-react'
+import {Button, Form, Placeholder, Loader, Segment} from 'semantic-ui-react'
 import {createComment, createPostCommentReply} from "../../store/actions/projectActions";
 import CustomComment from "../CustomComment";
 const queryable = require('query-objects');
@@ -17,6 +17,17 @@ export class PostDetails extends Component {
   //   postComment: "",
   //   postAnswer: "",
   // };
+
+
+  PlaceholderExampleHeaderImage = () => (
+    <Placeholder>
+      <Placeholder.Header image>
+        <Placeholder.Line />
+        <Placeholder.Line />
+      </Placeholder.Header>
+    </Placeholder>
+  )
+
   state = {
     postComment: {
       postId: null,
@@ -101,10 +112,12 @@ export class PostDetails extends Component {
           </div>
           <Form reply>
             <Form.TextArea value={this.state.postComment.content} onChange={this.handlePostCommentChange} id={"postComment"} placeholder={"Create a comment"} style={{height: '60px'}}/>
-            <Button onClick={this.handlePostCommentSubmit} content='Add comment' labelPosition='left' icon='edit' primary/>
+            <Button onClick={this.handlePostCommentSubmit} content='Add comment' labelPosition='right' icon='edit' primary/>
           </Form>
           <br/>
 
+
+          {res == null && this.PlaceholderExampleHeaderImage()}
           {res && res.map(comment => {
             return(
               <CustomComment comments={comments} id={comment.id} key={comment.id} all={this.props} />
