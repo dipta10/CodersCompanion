@@ -15,12 +15,21 @@ export const keyword = {
 
 export const linkurl = {
   post: "/post/:id",
+  profile: "/profile/:id",
   signIn: "/signin",
   signUp: "/signup",
   createPost: "/createPost",
   root: "/",
   dashboard: "/",
-  notifications: "/notifications"
+  notifications: "/notifications",
 };
 
 export const newline_firebase = "%20NEW_LINE19382%";
+
+function chooseColor (value) {
+  if (value >= 3) return 'red';
+  else if (value >= 2) return 'blue';
+  else if (value >= 1) return 'green';
+  return 'black';
+}
+export default chooseColor

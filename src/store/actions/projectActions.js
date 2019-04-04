@@ -1,6 +1,6 @@
 import {keyword} from "../../keyword";
 
-export const createProject = (project) => {
+export const createProject = (project, myProfile) => {
   return (dispatch, getState, {getFirebase, getFirestore}) => {
     // make async call to database
     const firestore = getFirestore();
@@ -16,6 +16,10 @@ export const createProject = (project) => {
 
       firestore.collection('posts').doc(res.id).update({
         id: res.id,
+      });
+
+      firestore.collection('users').doc(userid).update({
+        totalPosts: myProfile.totalPosts + 1,
       });
 
       dispatch({
@@ -109,17 +113,16 @@ export const createPostCommentReply = (comment, parentChild) => {
 }
 
 
-export const createPostVote = (value, found, id, values) => {
+export const createPostVote = (value, found, id, values, his_profile) => {
   return (dispatch, getState, {getFirebase, getFirestore}) => {
     // make async call to database
     const firestore = getFirestore();
     const profile = getState().firebase.profile; // no 30
     const userid = getState().firebase.auth.uid;
     console.log(id);
+    console.log('profile here', his_profile);
 
     if (found) {
-      console.log('found', values);
-      console.log('found vaule', found);
       firestore.collection('postVotes').doc(id).update({
         status: value,
       });
@@ -129,19 +132,29 @@ export const createPostVote = (value, found, id, values) => {
           upVote: values.upVote + 1,
           downVote: values.downVote - 1,
         });
+        firestore.collection('users').doc(his_profile.id).update({
+          upVote: his_profile.upVote + 1,
+          downVote: his_profile.downVote - 1,
+        });
       } else if (value === -1) {
         firestore.collection('posts').doc(values.postId).update({
           upVote: values.upVote - 1,
           downVote: values.downVote + 1,
+        });
+        firestore.collection('users').doc(his_profile.id).update({
+          upVote: his_profile.upVote - 1,
+          downVote: his_profile.downVote + 1,
         });
       }
 
       firestore.collection('posts').doc(values.postId).update({
         score: values.postScore + 2*value,
       });
+      firestore.collection('users').doc(his_profile.id).update({
+        reputation: his_profile.reputation + 2*value,
+      });
 
     } else {
-      console.log('not found and value', values);
       firestore.collection('postVotes').add({
         postId: values.postId,
         userId: values.userId,
@@ -157,10 +170,18 @@ export const createPostVote = (value, found, id, values) => {
             score: values.postScore + value,
             upVote: values.upVote + 1,
           });
+          firestore.collection('users').doc(his_profile.id).update({
+            reputation: his_profile.reputation + value,
+            upVote: his_profile.upVote + 1,
+          });
         } else if (value === -1) {
           firestore.collection('posts').doc(values.postId).update({
             score: values.postScore + value,
             downVote: values.downVote + 1,
+          });
+          firestore.collection('users').doc(his_profile.id).update({
+            reputation: his_profile.reputation + value,
+            downVote: his_profile.downVote + 1,
           });
         }
 

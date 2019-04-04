@@ -8,17 +8,8 @@ import MarkdownRenderer from 'react-markdown-renderer';
 import {createComment, createPostCommentReply, createPostVote} from "../../store/actions/projectActions";
 import CustomComment from "../CustomComment";
 import {
-  Divider,
-  Header,
-  Container,
-  Button,
-  Form,
-  Icon,
-  Label,
-  Placeholder,
-  Loader,
-  Segment,
-  Card
+  List, Divider, Header, Container, Button, Form,
+  Icon, Label, Placeholder, Loader, Segment, Card
 } from 'semantic-ui-react'
 
 const queryable = require('query-objects');
@@ -64,15 +55,19 @@ export class PostDetails extends Component {
     }
   };
   handleVote = (value, found, id, values) => {
-    // this.setState({
-    //   ...this.state,
-    //   postVote: {
-    //     postId: this.props.project.id,
-    //     userId: this.props.auth.uid,
-    //     status: 1
-    //   }
-    // });
-    this.props.createPostVote(value, found, id, values);
+
+
+    const userId = this.props.project.userId;
+    const users = this.props.users;
+    var profile = null;
+    users.forEach(user => {
+      if (user.id === this.props.project.userId) {
+        profile = user;
+      }
+    });
+    console.log('his profile', profile);
+
+    this.props.createPostVote(value, found, id, values, profile);
   };
   handlePostCommentChange = e => {
     // this.setState({
@@ -103,11 +98,6 @@ export class PostDetails extends Component {
       },
     });
   };
-
-  constructor(props) {
-    super(props);
-    const {project, postVotes} = this.props;
-  }
 
   render() {
 
@@ -163,12 +153,41 @@ export class PostDetails extends Component {
               <Divider/>
               <MarkdownRenderer markdown={project.content.replace(/%20NEW_LINE19382%/g, '\n')}/>
               {/*<ReactMarkdown source={project.content.replace(/%20NEW_LINE19382%/g, '\n')} />,*/}
+              <Divider/>
+              <List>
+                <List.Item>
+                  <List.Icon name='user'/>
+                  <List.Content>Post by {project.username}</List.Content>
+                </List.Item>
+                <List.Item>
+                  <List.Icon name='wait'/>
+                  <List.Content>{moment(project.creationTime.toDate()).format('MMMM Do YYYY, h:mm:ss a')}</List.Content>
+                </List.Item>
+                <List.Item>
+                  <List.Icon name='mail'/>
+                  <List.Content>
+                    <a href='mailto:jack@semantic-ui.com'>jack@semantic-ui.com</a>
+                  </List.Content>
+                </List.Item>
+                <List.Item>
+                  <List.Icon name='linkify'/>
+                  <List.Content>
+                    <a href='http://www.semantic-ui.com'>semantic-ui.com</a>
+                  </List.Content>
+                </List.Item>
+              </List>
             </Segment>
           </Container>
 
           <Container textAlign='center' style={{marginTop: '10px'}} className="">
 
-            <Button onClick={() => this.handleVote(1, postVoteButton.found, postVoteButton.id, {postId: this.props.project.id, userId: this.props.auth.uid, postScore: this.props.project.score, upVote: project.upVote, downVote: project.downVote})} disabled={!postVoteButton.upVoteButton} as='div'
+            <Button onClick={() => this.handleVote(1, postVoteButton.found, postVoteButton.id, {
+              postId: this.props.project.id,
+              userId: this.props.auth.uid,
+              postScore: this.props.project.score,
+              upVote: project.upVote,
+              downVote: project.downVote
+            })} disabled={!postVoteButton.upVoteButton} as='div'
                     labelPosition='right'>
               <Button basic color={postVoteButton.upVoteButton ? 'grey' : 'red'}>
                 <Icon name='arrow up'/>
@@ -180,7 +199,13 @@ export class PostDetails extends Component {
               </Label>
             </Button>
 
-            <Button onClick={() => this.handleVote(-1, postVoteButton.found, postVoteButton.id, {postId: this.props.project.id, userId: this.props.auth.uid, postScore: this.props.project.score, upVote: project.upVote, downVote: project.downVote})} disabled={!postVoteButton.downVoteButton} as='div'
+            <Button onClick={() => this.handleVote(-1, postVoteButton.found, postVoteButton.id, {
+              postId: this.props.project.id,
+              userId: this.props.auth.uid,
+              postScore: this.props.project.score,
+              upVote: project.upVote,
+              downVote: project.downVote
+            })} disabled={!postVoteButton.downVoteButton} as='div'
                     labelPosition='right'>
               <Button basic color={postVoteButton.downVoteButton ? 'grey' : 'blue'}>
                 <Icon name='arrow down'/>
@@ -231,8 +256,7 @@ export class PostDetails extends Component {
 };
 
 
-const
-  mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state, ownProps) => {
     const id = ownProps.match.params.id;
     const projects = state.firestore.data.posts;
     const project = projects ? projects[id] : null;
@@ -243,17 +267,17 @@ const
       auth: state.firebase.auth,
       comments: state.firestore.ordered.comments,
       postVotes: state.firestore.ordered.postVotes,
+      users: state.firestore.ordered.users,
     }
-  }
+  };
 
-const
-  mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return {
       createPostCommentActionType: (comment, postId) => dispatch(createComment(comment, postId)),
       createPostCommentReply: (comment, parentChild) => dispatch(createPostCommentReply(comment, parentChild)),
-      createPostVote: (value, found, id, values) => dispatch(createPostVote(value, found, id, values)),
+      createPostVote: (value, found, id, values, profile) => dispatch(createPostVote(value, found, id, values, profile)),
     };
-  }
+  };
 
 export default compose(
   connect(
@@ -264,8 +288,7 @@ export default compose(
     {collection: 'posts'},
     {collection: 'comments'},
     {collection: 'postVotes'},
+    {collection: 'users'},
   ])
-)(
-  PostDetails
-)
+)(PostDetails)
 ;

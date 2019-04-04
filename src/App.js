@@ -8,6 +8,7 @@ import CreatePost from "./Components/posts/CreatePost";
 import Navbar from "./Components/layout/Navbar";
 import {linkurl} from "./keyword";
 import Notifications from "./Components/dashboard/Notifications";
+import Profile from "./Components/Profile";
 
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
             <Route path={linkurl.signUp} component={SignUp} />
             <Route path={linkurl.createPost} component={CreatePost} />
             <Route path={linkurl.notifications} component={Notifications} />
+            <Route path={linkurl.profile} component={Profile} />
           </Switch>
         </div>
       </BrowserRouter>

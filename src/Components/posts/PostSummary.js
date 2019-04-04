@@ -17,7 +17,9 @@ export class PostSummary extends Component {
       <Card fluid>
         <Card.Content>
           <Image floated='left' size='mini' src='https://react.semantic-ui.com/images/avatar/large/steve.jpg'/>
-          <Card.Header>{project.username}</Card.Header>
+          <Link to={'/profile/' + project.userId}>
+            <Card.Header>{project.username}</Card.Header>
+          </Link>
           <Card.Meta>{moment(project.creationTime.toDate()).fromNow()}</Card.Meta>
           <Link to={'/post/' + project.id}>
             <Card.Description style={{color: 'black', marginTop: '10px'}}>{project.title}</Card.Description>

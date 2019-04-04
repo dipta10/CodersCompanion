@@ -8,6 +8,11 @@ import {Container, Button, Grid, Form, Message} from 'semantic-ui-react'
 
 
 export class SignUp extends Component {
+
+  componentDidMount() {
+    console.log('here');
+  }
+
   state = {
     email: "",
     password: "",
@@ -18,6 +23,7 @@ export class SignUp extends Component {
     reputation: 0,
     description: "",
     status: 1,
+    totalPosts: 0,
   };
   // 1 = active
   // 2 = inactive

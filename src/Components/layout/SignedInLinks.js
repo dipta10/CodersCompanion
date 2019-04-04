@@ -1,15 +1,36 @@
 import React, {Component} from "react";
 import {connect} from 'react-redux'
 import {signOut} from "../../store/actions/authActions";
-import {Menu, Label} from 'semantic-ui-react'
+import {Dropdown, Icon, Menu, Label, Image} from 'semantic-ui-react'
 import {Link} from 'react-router-dom';
 import {linkurl} from "../../keyword";
 import logo from "../../logo.png"
 import {Redirect, withRouter} from 'react-router-dom'
+import img from '../../jenny.jpg'
 
 export class SignedInLinks extends Component {
 
   state = {activeItem: 'Dashboard'};
+
+  options = [
+    // {
+    //   key: 'user',
+    //   text: (
+    //     <span>
+    //     Signed in as <strong>{this.props.profile.firstName + ' ' + this.props.profile.lastName}</strong>
+    //       {console.log('the props', this.props)}
+    //     </span>
+    //   ),
+    //   disabled: true,
+    // },
+    { key: 'profile', text: 'Your Profile' },
+    { key: 'stars', text: 'Your Stars' },
+    { key: 'explore', text: 'Explore' },
+    { key: 'integrations', text: 'Integrations' },
+    { key: 'help', text: 'Help' },
+    { key: 'settings', text: 'Settings' },
+    { key: 'sign-out', text: 'Sign Out', onClick: this.props.signOut},
+  ]
 
   handleItemClick = (e, {name}) => {
 
@@ -51,23 +72,39 @@ export class SignedInLinks extends Component {
             active={activeItem === 'CreatePost'}
             onClick={this.handleItemClick}
           >Create Post</Menu.Item>
+
           <Menu.Item
             name='Notifications'
             active={activeItem === 'Notifications'}
             onClick={this.handleItemClick}
           >
-            Notifications
+            <Icon name='bell' />
             <Label circular color="red">
               2
             </Label>
           </Menu.Item>
+
+          {/*<Menu.Menu position='right'>*/}
+            {/*<Menu.Item*/}
+              {/*name='logout'*/}
+              {/*active={activeItem === 'logout'}*/}
+              {/*onClick={() => handleLogout(this.props)}*/}
+            {/*/>*/}
+            {/*{console.log(this.props)}*/}
+          {/*</Menu.Menu>*/}
+
           <Menu.Menu position='right'>
-            <Menu.Item
-              name='logout'
-              active={activeItem === 'logout'}
-              onClick={() => handleLogout(this.props)}
-            />
+            <Menu.Item>
+              <div>
+                <Image src={img} avatar />
+                <span>{this.props.profile.firstName}</span>
+              </div>
+              <Dropdown trigger={' '} options={this.options} />
+            </Menu.Item>
           </Menu.Menu>
+
+
+
         </Menu>
       </div>
 

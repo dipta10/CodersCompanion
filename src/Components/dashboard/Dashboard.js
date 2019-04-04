@@ -6,7 +6,7 @@ import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import {Redirect} from 'react-router-dom'
 import {messi} from '../../messi.jpg'
-import {Container, Icon, Grid, Menu, Segment} from 'semantic-ui-react'
+import {Label, Container, Icon, Grid, Menu, Segment} from 'semantic-ui-react'
 
 
 export class Dashboard extends Component {
@@ -74,10 +74,11 @@ export class Dashboard extends Component {
               Hot
             </Menu.Item>
             <Menu.Item
-              name='links'
-              active={this.state.activeItem === 'links'}
+              name='notifications'
+              active={this.state.activeItem === 'notifications'}
               onClick={this.handleItemClick}
-            />
+            >Notification
+            </Menu.Item>
           </Menu>
         </Grid.Column>
 
