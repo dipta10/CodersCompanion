@@ -123,7 +123,7 @@ class CustomComment extends Component {
               this.props.comments && this.props.comments.map(comment => {
                 return (comment.id == this.props.id && comment.child && comment.child.map(id => {
                   return (
-                    <CustomComment comments={this.props.comments} id={id} all={this.props.all}/>
+                    <CustomComment comments={this.props.comments} id={id} all={this.props.all} key={id}/>
                   )
                 }))
               })

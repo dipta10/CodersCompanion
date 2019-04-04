@@ -1,9 +1,11 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, {Component} from "react";
+import {Link} from "react-router-dom";
 import {linkurl} from "../../keyword";
 import {signUp} from "../../store/actions/authActions";
-import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import {connect} from 'react-redux'
+import {Redirect} from 'react-router-dom'
+import {Container, Button, Checkbox, Form, Message} from 'semantic-ui-react'
+
 
 export class SignUp extends Component {
   state = {
@@ -20,7 +22,8 @@ export class SignUp extends Component {
   // 1 = active
   // 2 = inactive
   // 3 = banned
-  something = e => {};
+  something = e => {
+  };
   handleChange = e => {
     this.setState({
       [e.target.id]: e.target.value
@@ -30,6 +33,7 @@ export class SignUp extends Component {
     e.preventDefault();
     this.props.signUp(this.state);
   };
+
   render() {
     const auth = this.props.auth;
     const authError = this.props.authError;
@@ -37,38 +41,31 @@ export class SignUp extends Component {
     if (auth.uid) return <Redirect to={linkurl.dashboard}/>;
 
     return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit} className="white">
-          <h5 className="grey-text text-darken-3">Sign Up</h5>
-          <div className="input-field">
-            <label htmlFor="firstName">First Name</label>
-            <input type="text" id="firstName" onChange={this.handleChange} />
-          </div>
-          <div className="input-field">
-            <label htmlFor="lastName">Last Name</label>
-            <input type="text" id="lastName" onChange={this.handleChange} />
-          </div>
-          <div className="input-field">
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" onChange={this.handleChange} />
-          </div>
-          <div className="input-field">
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" onChange={this.handleChange} />
-          </div>
-          <div className="input-field">
-            <div className="center">
-              <button className="btn pink lighten-1 z-depth-0">Sign Up</button>
-            </div>
-            <div className="red-text center">
-              <Link to={linkurl.signIn}>
-                <p className="red-text">Sign In?</p>
-              </Link>
-              { authError ? <p className="red-text">{authError}</p> : null}
-            </div>
-          </div>
-        </form>
-      </div>
+
+      <Container>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Field>
+            <label>First Name</label>
+            <input onChange={this.handleChange} id="firstName" placeholder='First Name'/>
+          </Form.Field>
+          <Form.Field>
+            <label>Last Name</label>
+            <input onChange={this.handleChange} id="lastName" placeholder='Last Name'/>
+          </Form.Field>
+          <Form.Input onChange={this.handleChange} id="email" label='Email' type="email" placeholder='Email'/>
+          <Form.Input onChange={this.handleChange} id="password" label='Enter Password' placeholder='Password' type='password'/>
+          <Button primary type='submit'>Submit</Button>
+        </Form>
+
+        {authError ?
+          <Message
+            error
+            content={authError}
+          />
+          : null}
+
+
+      </Container>
     );
   }
 }
@@ -86,3 +83,67 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
+
+
+{/*<div className="container">*/
+}
+{/*<form onSubmit={this.handleSubmit} className="white">*/
+}
+{/*<div className="input-field">*/
+}
+{/*<span htmlFor="firstName">First Name</span>*/
+}
+{/*<input type="text" id="firstName" onChange={this.handleChange} />*/
+}
+{/*</div>*/
+}
+{/*<div className="input-field">*/
+}
+{/*<span htmlFor="lastName">Last Name</span>*/
+}
+{/*<input type="text" id="lastName" onChange={this.handleChange} />*/
+}
+{/*</div>*/
+}
+{/*<div className="input-field">*/
+}
+{/*<span htmlFor="email">Email</span>*/
+}
+{/*<input type="email" id="email" onChange={this.handleChange} />*/
+}
+{/*</div>*/
+}
+{/*<div className="input-field">*/
+}
+{/*<span htmlFor="password">Password</span>*/
+}
+{/*<input type="password" id="password" onChange={this.handleChange} />*/
+}
+{/*</div>*/
+}
+{/*<div className="input-field">*/
+}
+{/*<div className="center">*/
+}
+{/*<button className="btn pink lighten-1 z-depth-0">Sign Up</button>*/
+}
+{/*</div>*/
+}
+{/*<div className="red-text center">*/
+}
+{/*<Link to={linkurl.signIn}>*/
+}
+{/*<p className="red-text">Sign In?</p>*/
+}
+{/*</Link>*/
+}
+{/*{ authError ? <p className="red-text">{authError}</p> : null}*/
+}
+{/*</div>*/
+}
+{/*</div>*/
+}
+{/*</form>*/
+}
+{/*</div>*/
+}

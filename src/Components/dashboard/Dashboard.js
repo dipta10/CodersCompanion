@@ -6,9 +6,14 @@ import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import {Redirect} from 'react-router-dom'
 import {messi} from '../../messi.jpg'
-import { Container } from 'semantic-ui-react'
+import { Container, Grid, Menu, Segment } from 'semantic-ui-react'
+
 
 export class Dashboard extends Component {
+  state = { activeItem: 'bio' }
+
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
   render() {
     const projects = this.props.project;
 
@@ -18,12 +23,32 @@ export class Dashboard extends Component {
     const {notifications} = this.props;
 
     return (
+    <Grid style={{}}>
+      <Grid.Column width={4}>
+        <Menu fluid vertical tabular>
+          <Menu.Item name='bio' active={this.state.activeItem === 'bio'} onClick={this.handleItemClick} />
+          <Menu.Item name='pics' active={this.state.activeItem === 'pics'} onClick={this.handleItemClick} />
+          <Menu.Item
+            name='companies'
+            active={this.state.activeItem === 'companies'}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            name='links'
+            active={this.state.activeItem === 'links'}
+            onClick={this.handleItemClick}
+          />
+        </Menu>
+      </Grid.Column>
 
-      <Container style={{marginLeft: "10px", marginTop: "20px"}}>
-        <div className="">
+      <Grid.Column stretched width={12}>
+        <Segment>
           <PostList projects={projects}/>
-        </div>
-      </Container>
+        </Segment>
+      </Grid.Column>
+    </Grid>
+
+
     );
   }
 }

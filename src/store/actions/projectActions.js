@@ -48,12 +48,9 @@ export const createComment = (comment, postId) => {
       postId: postId
     }).then((res) => {
 
-
       firestore.collection('comments').doc(res.id).update({
         id: res.id,
       });
-
-
 
       dispatch({
         type: keyword.createPostCommentActionType, comment: comment
@@ -69,7 +66,6 @@ export const createComment = (comment, postId) => {
 
   };
 }
-
 
 
 export const createPostCommentReply = (comment, parentChild) => {
@@ -109,7 +105,79 @@ export const createPostCommentReply = (comment, parentChild) => {
       );
     });
 
-
-
   };
 }
+
+
+export const createPostVote = (value, found, id, values) => {
+  return (dispatch, getState, {getFirebase, getFirestore}) => {
+    // make async call to database
+    const firestore = getFirestore();
+    const profile = getState().firebase.profile; // no 30
+    const userid = getState().firebase.auth.uid;
+    console.log(id);
+
+    if (found) {
+      console.log('found', values);
+      console.log('found vaule', found);
+      firestore.collection('postVotes').doc(id).update({
+        status: value,
+      });
+
+      if (value === 1) {
+        firestore.collection('posts').doc(values.postId).update({
+          upVote: values.upVote + 1,
+          downVote: values.downVote - 1,
+        });
+      } else if (value === -1) {
+        firestore.collection('posts').doc(values.postId).update({
+          upVote: values.upVote - 1,
+          downVote: values.downVote + 1,
+        });
+      }
+
+      firestore.collection('posts').doc(values.postId).update({
+        score: values.postScore + 2*value,
+      });
+
+    } else {
+      console.log('not found and value', values);
+      firestore.collection('postVotes').add({
+        postId: values.postId,
+        userId: values.userId,
+        status: value,
+      }).then((res) => {
+
+        firestore.collection('postVotes').doc(res.id).update({
+          id: res.id,
+        });
+
+        if (value === 1) {
+          firestore.collection('posts').doc(values.postId).update({
+            score: values.postScore + value,
+            upVote: values.upVote + 1,
+          });
+        } else if (value === -1) {
+          firestore.collection('posts').doc(values.postId).update({
+            score: values.postScore + value,
+            downVote: values.downVote + 1,
+          });
+        }
+
+        // dispatch({
+        //   type: keyword.createPostCommentActionType, comment: value
+        // });
+
+      }).catch((err) => {
+        // dispatch(
+        //   {
+        //     type: keyword.createPostCommentErrorType,
+        //     err: err
+        //   }
+        // );
+      });
+    };
+  }
+
+
+};

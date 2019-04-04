@@ -5,7 +5,7 @@ import {Redirect} from 'react-router-dom'
 import MarkdownRenderer from 'react-markdown-renderer';
 import {keyword, linkurl, newline_firebase} from "../../keyword";
 import TextareaAutosize from 'react-textarea-autosize';
-import { Button, Divider, Header, Image, Segment, Form, TextArea } from 'semantic-ui-react'
+import { Button, Divider, Container, Segment, Form, TextArea } from 'semantic-ui-react'
 
 export class CreatePost extends Component {
   state = {
@@ -39,7 +39,7 @@ export class CreatePost extends Component {
     if (auth.uid == null) return <Redirect to='/signin'/>;
 
     return (
-      <div>
+      <Container>
         <Segment>
           <Form>
             <TextArea rows={2} placeholder='Title' onChange={this.handleChange} value={this.state.title} id='title' />
@@ -58,7 +58,7 @@ export class CreatePost extends Component {
         <Divider horizontal>
           <Button primary onClick={this.handleSubmit} >Submit</Button>
         </Divider>
-      </div>
+      </Container>
     );
   }
 }

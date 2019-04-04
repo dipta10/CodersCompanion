@@ -4,6 +4,7 @@ import {signIn} from "../../store/actions/authActions";
 import { Redirect } from 'react-router-dom'
 import { Link } from "react-router-dom";
 import {linkurl} from "../../keyword";
+import {Container, Button, Checkbox, Form, Message} from 'semantic-ui-react'
 
 export class SignIn extends Component {
   state = {
@@ -27,32 +28,22 @@ export class SignIn extends Component {
 
     const authError = this.props.authError;
     return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit} className="white">
-          <h5 className="grey-text text-darken-3">Sign In</h5>
-          <div className="input-field">
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" onChange={this.handleChange} />
-          </div>
-          <div className="input-field">
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" onChange={this.handleChange} />
-          </div>
-          <div className="input-field">
-            <div className="center">
-              <button className="btn pink lighten-1 z-depth-0">Login</button>
-            </div>
-            <div className="red-text center">
-              { authError ? <p>Login Failed! Wrong email/password!</p> : null}
-            </div>
-            <div className="red-text center">
-              <Link to={linkurl.signUp}>
-                <p className="red-text">Create Account?</p>
-              </Link>
-            </div>
-          </div>
-        </form>
-      </div>
+      <Container>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Input onChange={this.handleChange} id="email" label='Email' type="email" placeholder='Email'/>
+          <Form.Input onChange={this.handleChange} id="password" label='Enter Password' placeholder='Password' type='password'/>
+          <Button primary type='submit'>Submit</Button>
+        </Form>
+
+        {authError ?
+          <Message
+            error
+            content={'wrong email/password'}
+          />
+          : null}
+
+
+      </Container>
     );
   }
 }
