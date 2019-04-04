@@ -4,7 +4,7 @@ import {signIn} from "../../store/actions/authActions";
 import { Redirect } from 'react-router-dom'
 import { Link } from "react-router-dom";
 import {linkurl} from "../../keyword";
-import {Container, Button, Checkbox, Form, Message} from 'semantic-ui-react'
+import {Container, Button, Grid, Form, Message} from 'semantic-ui-react'
 
 export class SignIn extends Component {
   state = {
@@ -32,7 +32,14 @@ export class SignIn extends Component {
         <Form onSubmit={this.handleSubmit}>
           <Form.Input onChange={this.handleChange} id="email" label='Email' type="email" placeholder='Email'/>
           <Form.Input onChange={this.handleChange} id="password" label='Enter Password' placeholder='Password' type='password'/>
-          <Button primary type='submit'>Submit</Button>
+
+
+          <Grid>
+            <Grid.Column textAlign="center">
+              <Button primary type='submit'>Submit</Button>
+            </Grid.Column>
+          </Grid>
+
         </Form>
 
         {authError ?

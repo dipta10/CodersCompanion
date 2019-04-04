@@ -4,7 +4,7 @@ import {linkurl} from "../../keyword";
 import {signUp} from "../../store/actions/authActions";
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
-import {Container, Button, Checkbox, Form, Message} from 'semantic-ui-react'
+import {Container, Button, Grid, Form, Message} from 'semantic-ui-react'
 
 
 export class SignUp extends Component {
@@ -54,7 +54,12 @@ export class SignUp extends Component {
           </Form.Field>
           <Form.Input onChange={this.handleChange} id="email" label='Email' type="email" placeholder='Email'/>
           <Form.Input onChange={this.handleChange} id="password" label='Enter Password' placeholder='Password' type='password'/>
-          <Button primary type='submit'>Submit</Button>
+
+          <Grid>
+            <Grid.Column textAlign="center">
+              <Button primary type='submit'>Submit</Button>
+            </Grid.Column>
+          </Grid>
         </Form>
 
         {authError ?
@@ -85,65 +90,3 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
 
 
-{/*<div className="container">*/
-}
-{/*<form onSubmit={this.handleSubmit} className="white">*/
-}
-{/*<div className="input-field">*/
-}
-{/*<span htmlFor="firstName">First Name</span>*/
-}
-{/*<input type="text" id="firstName" onChange={this.handleChange} />*/
-}
-{/*</div>*/
-}
-{/*<div className="input-field">*/
-}
-{/*<span htmlFor="lastName">Last Name</span>*/
-}
-{/*<input type="text" id="lastName" onChange={this.handleChange} />*/
-}
-{/*</div>*/
-}
-{/*<div className="input-field">*/
-}
-{/*<span htmlFor="email">Email</span>*/
-}
-{/*<input type="email" id="email" onChange={this.handleChange} />*/
-}
-{/*</div>*/
-}
-{/*<div className="input-field">*/
-}
-{/*<span htmlFor="password">Password</span>*/
-}
-{/*<input type="password" id="password" onChange={this.handleChange} />*/
-}
-{/*</div>*/
-}
-{/*<div className="input-field">*/
-}
-{/*<div className="center">*/
-}
-{/*<button className="btn pink lighten-1 z-depth-0">Sign Up</button>*/
-}
-{/*</div>*/
-}
-{/*<div className="red-text center">*/
-}
-{/*<Link to={linkurl.signIn}>*/
-}
-{/*<p className="red-text">Sign In?</p>*/
-}
-{/*</Link>*/
-}
-{/*{ authError ? <p className="red-text">{authError}</p> : null}*/
-}
-{/*</div>*/
-}
-{/*</div>*/
-}
-{/*</form>*/
-}
-{/*</div>*/
-}

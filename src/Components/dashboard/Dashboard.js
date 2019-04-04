@@ -6,47 +6,87 @@ import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import {Redirect} from 'react-router-dom'
 import {messi} from '../../messi.jpg'
-import { Container, Grid, Menu, Segment } from 'semantic-ui-react'
+import {Container, Icon, Grid, Menu, Segment} from 'semantic-ui-react'
 
 
 export class Dashboard extends Component {
-  state = { activeItem: 'bio' }
+  state = {
+    activeItem: 'public',
+    sortOn: 'creationTime',
+  }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  handleItemClick = (e, {name}) => {
+    var sortOn = 'time';
+    console.log('here name is', name);
+    switch(name) {
+      case 'public':
+        sortOn = 'creationTime';
+        break;
+      case 'hot':
+        sortOn = 'score';
+        break;
+    }
+    this.setState({
+      activeItem: name,
+      sortOn: sortOn,
+    })
+  };
+
+  compareCreationTime = (a, b) => {
+    if (a.creationTime < b.creationTime) return -1;
+    if (a.creationTime > b.creationTime) return 1;
+    return 0;
+  }
 
   render() {
-    const projects = this.props.project;
+    var projects = this.props.project;
 
 
     const auth = this.props.auth;
     if (!auth.uid) return <Redirect to='/signin'/>;
     const {notifications} = this.props;
+    if (projects) {
+      console.log('this state', this.state);
+      if (this.state.sortOn === 'creationTime') {
+        projects =  projects.slice().sort(function(a, b) {
+          // return b.score - a.score;
+          return b.creationTime.toDate() - a.creationTime.toDate();
+        });
+      } else if (this.state.sortOn === 'score') {
+        projects =  projects.slice().sort(function(a, b) {
+          return b.score - a.score;
+        });
+      }
+    }
 
     return (
-    <Grid style={{}}>
-      <Grid.Column width={4}>
-        <Menu fluid vertical tabular>
-          <Menu.Item name='bio' active={this.state.activeItem === 'bio'} onClick={this.handleItemClick} />
-          <Menu.Item name='pics' active={this.state.activeItem === 'pics'} onClick={this.handleItemClick} />
-          <Menu.Item
-            name='companies'
-            active={this.state.activeItem === 'companies'}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Item
-            name='links'
-            active={this.state.activeItem === 'links'}
-            onClick={this.handleItemClick}
-          />
-        </Menu>
-      </Grid.Column>
+      <Grid style={{}}>
+        <Grid.Column width={4}>
+          <Menu fluid vertical tabular>
+            <Menu.Item name='public' active={this.state.activeItem === 'public'} onClick={this.handleItemClick}/>
+            <Menu.Item name='friends' active={this.state.activeItem === 'friends'} onClick={this.handleItemClick}/>
+            <Menu.Item
+              name='hot'
+              active={this.state.activeItem === 'hot'}
+              onClick={this.handleItemClick}
+            >
+              <Icon name='bolt'/>
+              Hot
+            </Menu.Item>
+            <Menu.Item
+              name='links'
+              active={this.state.activeItem === 'links'}
+              onClick={this.handleItemClick}
+            />
+          </Menu>
+        </Grid.Column>
 
-      <Grid.Column stretched width={12}>
-        <Segment>
-          <PostList projects={projects}/>
-        </Segment>
-      </Grid.Column>
-    </Grid>
+        <Grid.Column stretched width={12}>
+          <Segment>
+            <PostList projects={projects}/>
+          </Segment>
+        </Grid.Column>
+      </Grid>
 
 
     );
@@ -64,7 +104,8 @@ const mapStateToProps = (state) => {
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
-    {collection: 'posts', orderBy: ['creationTime', 'desc']},
+    // {collection: 'posts', orderBy: ['creationTime', 'desc']},
+    {collection: 'posts', },
     {collection: 'notifications', limit: 5, orderBy: ['time', 'desc']}
   ])
 )(Dashboard);

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { SignedOutLink } from "./SignedOutLink";
+import SignedOutLink from "./SignedOutLink";
 import { connect } from 'react-redux'
 import SignedInLinks from "./SignedInLinks";
 import {linkurl} from "../../keyword";
