@@ -91,7 +91,7 @@ class CustomComment extends Component {
     return (
       <Comment.Group>
 
-        <Comment>
+        <Comment id={this.props.classId}>
           <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/elliot.jpg'/>
           <Comment.Content>
             <Comment.Author as='a'>{mycomment.username}</Comment.Author>

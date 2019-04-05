@@ -1,5 +1,21 @@
 import {keyword} from "../../keyword";
 
+const createNotificationForProjectCreation = (projectId, userId, profile, firestore) => {
+  firestore.collection('notifications').add({
+    type: 'post',
+    userId: userId,
+    postId: projectId,
+    creationTime: new Date(),
+    userName: profile.firstName + ' ' + profile.lastName,
+  }).then((res) => {
+    firestore.collection('notifications').doc(res.id).update({
+      id: res.id,
+    });
+  }).catch(err => {
+    console.log('error whole creating notification for post creation', err);
+  });
+}
+
 export const createProject = (project, myProfile) => {
   return (dispatch, getState, {getFirebase, getFirestore}) => {
     // make async call to database
@@ -21,6 +37,8 @@ export const createProject = (project, myProfile) => {
       firestore.collection('users').doc(userid).update({
         totalPosts: myProfile.totalPosts + 1,
       });
+
+      createNotificationForProjectCreation(res.id, userid, profile, firestore);
 
       dispatch({
         type: keyword.createProjectActionType, project: project

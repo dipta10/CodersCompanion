@@ -15,18 +15,20 @@ const createNotification = (notification => {
     .then((doc) => console.log('notification added', doc));
 });
 
-exports.projectCreated = functions.firestore
-  .document('posts/{postId}')
-  .onCreate(doc => {
-  const post = doc.data();
-  const notification = {
-    content: 'Added a new post',
-    user: `${post.username}`,
-    time: admin.firestore.FieldValue.serverTimestamp()
-  };
-
-  return createNotification(notification);
-});
+// exports.projectCreated = functions.firestore
+//   .document('posts/{postId}')
+//   .onCreate(doc => {
+//   const post = doc.data();
+//   const notification = {
+//     content: 'post',
+//     user: `${post.username}`,
+//     userId: `${post.userId}`,
+//     postId: `${post.id}`,
+//     time: admin.firestore.FieldValue.serverTimestamp()
+//   };
+//
+//   return createNotification(notification);
+// });
 
 exports.userJoined = functions.auth.user()
   .onCreate(user => {
@@ -35,6 +37,8 @@ exports.userJoined = functions.auth.user()
       .get()
       .then(doc => {
         const newUser = doc.data();
+        console.log('the newuser here in cloud function is', newUser);
+        console.log('the whole doc is: ', doc);
         const notification = {
           content: 'Joined the party',
           user: `${newUser.firstName} ${newUser.lastName}`,

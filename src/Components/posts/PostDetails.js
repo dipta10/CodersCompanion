@@ -237,7 +237,7 @@ export class PostDetails extends Component {
           {res == null && this.PlaceholderExampleHeaderImage()}
           {res && res.map(comment => {
             return (
-              <CustomComment comments={comments} id={comment.id} key={comment.id} all={this.props}/>
+              <CustomComment classId={'kola'} comments={comments} id={comment.id} key={comment.id} all={this.props}/>
             );
           })}
 
