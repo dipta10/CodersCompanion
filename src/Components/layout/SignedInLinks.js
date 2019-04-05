@@ -24,7 +24,7 @@ export class SignedInLinks extends Component {
     //   disabled: true,
     // },
     { key: 'profile', text: 'My Profile',  onClick: () => this.handleItemClick(null, {name: 'myProfile'}) },
-    { key: 'stars', text: 'My Stars' },
+    { key: 'stars', text: 'My Friends' },
     { key: 'explore', text: 'Explore' },
     { key: 'integrations', text: 'Integrations' },
     { key: 'help', text: 'Help' },

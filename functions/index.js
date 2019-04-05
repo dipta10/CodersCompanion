@@ -37,12 +37,12 @@ exports.userJoined = functions.auth.user()
       .get()
       .then(doc => {
         const newUser = doc.data();
-        console.log('the newuser here in cloud function is', newUser);
-        console.log('the whole doc is: ', doc);
+        console.log('user id2??', doc.id);
         const notification = {
-          content: 'Joined the party',
-          user: `${newUser.firstName} ${newUser.lastName}`,
-          time: admin.firestore.FieldValue.serverTimestamp()
+          userName: `${newUser.firstName} ${newUser.lastName}`,
+          creationTime: admin.firestore.FieldValue.serverTimestamp(),
+          type: 'join',
+          userId: doc.id,
         };
         return createNotification(notification);
       });

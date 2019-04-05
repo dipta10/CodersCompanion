@@ -19,6 +19,7 @@
     "react-scripts": "2.1.8",
     "react-smooth-scroll": "^0.1.0",
     "react-textarea-autosize": "^7.1.0",
+    "really-smooth-scroll": "^2.1.1",
     "redux": "^4.0.1",
     "redux-firestore": "^0.7.2",
     "redux-thunk": "^2.3.0",

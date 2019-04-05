@@ -37,6 +37,10 @@ export class Notifications extends Component {
                     </Link>
                     </span>
                     }
+                    {
+                      item.type === 'join' &&
+                      <span> from your Institution Joined the party</span>
+                    }
                   </Feed.Summary>
                 </Feed.Content>
               </Feed.Event>
