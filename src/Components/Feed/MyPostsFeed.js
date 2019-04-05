@@ -16,8 +16,8 @@ class MyPostsFeed extends Component {
       <Feed>
         {notifications && notifications.map(item => {
           if (this.props.auth.uid !== item.userId &&
-            (item.type === 'post' || item.type === 'comment') &&
-            (item.postCreatorId === this.props.auth.uid || item.commentCreatorId === this.props.auth.uid)
+            (item.type === 'comment' || item.type === 'commentReply') &&
+            (item.postCreatorId === this.props.auth.uid || item.parentCommentCreatorId === this.props.auth.uid)
           ) return (
             <Feed.Event key={item.id}>
               <Feed.Label image={imageJenny}/>

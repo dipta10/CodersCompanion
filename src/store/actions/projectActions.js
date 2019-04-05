@@ -75,12 +75,31 @@ const createNotificationForCommentCreation = (postId, commentId, userId, postCre
     }).catch(err => {
       console.log('error whole creating notification for comment creation', err);
     });
-  } else {
-    console.log('here for reply');
-
   }
+};
 
-}
+
+const createNotificationForCommentReplyCreation = (userId, postId, postCreatorId, parentCommentId, parentCommentCreatorId, firstName, lastName, commentId, firestore) => {
+
+    console.log('here for no reply');
+    firestore.collection('notifications').add({
+      type: 'commentReply',
+      userId: userId,
+      postId: postId,
+      postCreatorId: postCreatorId,
+      parentCommentId: parentCommentId,
+      parentCommentCreatorId: parentCommentCreatorId,
+      creationTime: new Date(),
+      userName: firstName + ' ' + lastName,
+      commentId: commentId,
+    }).then((res) => {
+      firestore.collection('notifications').doc(res.id).update({
+        id: res.id,
+      });
+    }).catch(err => {
+      console.log('error whole creating notification for comment creation', err);
+    });
+};
 
 
 export const createComment = (comment, postId) => {
@@ -118,7 +137,6 @@ export const createComment = (comment, postId) => {
   };
 }
 
-
 export const createPostCommentReply = (comment, parentChild) => {
   return (dispatch, getState, {getFirebase, getFirestore}) => {
     // make async call to database
@@ -139,10 +157,13 @@ export const createPostCommentReply = (comment, parentChild) => {
         id: res.id,
       });
 
-
       firestore.collection('comments').doc(comment.parent).update({
         child: parentChild.concat(res.id),
       });
+
+      console.log('comment action: ', comment);
+
+      createNotificationForCommentReplyCreation(userid, comment.postId, comment.postCreatorId, comment.parent, comment.parentCommentCreatorId, profile.firstName, profile.lastName, res.id, firestore);
 
       dispatch({
         type: keyword.createPostCommentReplyActionType, comment: comment
@@ -155,7 +176,6 @@ export const createPostCommentReply = (comment, parentChild) => {
         }
       );
     });
-
   };
 }
 

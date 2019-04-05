@@ -22,7 +22,6 @@ class CustomComment extends Component {
   };
 
   handelAddReply = (mycomment) => {
-    console.log('mycomment', mycomment);
     const commentId = this.props.id;
     if (mycomment.type === 'post') {
       // post
@@ -32,6 +31,8 @@ class CustomComment extends Component {
         type: 'post',
         parent: commentId,
         postId: mycomment.postId,
+        parentCommentCreatorId: mycomment.userId,
+        postCreatorId: this.props.all.project.userId,
       };
 
       this.setState({

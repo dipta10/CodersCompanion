@@ -87,9 +87,10 @@ export class PostDetails extends Component {
 
     }
   };
+
   handlePostCommentSubmit = e => {
     e.preventDefault();
-    console.log('projec???', this.props.project);
+    console.log('that is me!');
     this.props.createPostCommentActionType({
       ...this.state.postComment,
       postCreatorId: this.props.project.userId,
@@ -241,7 +242,7 @@ export class PostDetails extends Component {
           {res == null && this.PlaceholderExampleHeaderImage()}
           {res && res.map(comment => {
             return (
-              <CustomComment classId={'kola'} comments={comments} id={comment.id} key={comment.id} all={this.props}/>
+              <CustomComment  comments={comments} id={comment.id} key={comment.id} all={this.props}/>
             );
           })}
 

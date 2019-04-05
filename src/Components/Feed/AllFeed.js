@@ -37,10 +37,23 @@ class AllFeed extends Component {
                     <span> from your Institution Joined the party</span>
                   }
                   {
-                    item.type === 'commentReply' && null
+                    item.type === 'commentReply' && item.parentCommentCreatorId === this.props.auth.uid &&
+                    <span> replied to your <span></span>
+                          <Link to={'/post/' + item.postId}>
+                          comment
+                          </Link>
+                        </span>
                   }
-                  {item.type === 'comment' &&
-                  item.postCreatorId !== this.props.auth.uid &&
+                  {
+                    item.type === 'commentReply' && item.parentCommentCreatorId !== this.props.auth.uid &&
+                    <span> replied to a <span></span>
+                          <Link to={'/post/' + item.postId}>
+                          comment
+                          </Link>
+                        </span>
+                  }
+                  {
+                    item.type === 'comment' && item.postCreatorId !== this.props.auth.uid &&
                   <span> commented on a <span></span>
                           <Link to={'/post/' + item.postId}>
                           post
@@ -61,7 +74,7 @@ class AllFeed extends Component {
             </Feed.Event>
           )
         })}
-        { notifications && notifications.length === 0 && <h4>You've no notifications yet :(</h4> }
+        {notifications && notifications.length === 0 && <h4>You've no notifications yet :(</h4>}
       </Feed>
     );
   }
