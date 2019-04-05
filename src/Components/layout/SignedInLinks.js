@@ -23,8 +23,8 @@ export class SignedInLinks extends Component {
     //   ),
     //   disabled: true,
     // },
-    { key: 'profile', text: 'Your Profile' },
-    { key: 'stars', text: 'Your Stars' },
+    { key: 'profile', text: 'My Profile',  onClick: () => this.handleItemClick(null, {name: 'myProfile'}) },
+    { key: 'stars', text: 'My Stars' },
     { key: 'explore', text: 'Explore' },
     { key: 'integrations', text: 'Integrations' },
     { key: 'help', text: 'Help' },
@@ -33,21 +33,26 @@ export class SignedInLinks extends Component {
   ]
 
   handleItemClick = (e, {name}) => {
-
-    this.setState({activeItem: name});
-
     switch (name) {
       case 'Dashboard':
+        this.setState({activeItem: name});
         this.props.history.push(linkurl.dashboard);
         break;
       case 'CreatePost':
+        this.setState({activeItem: name});
         this.props.history.push(linkurl.createPost);
         break;
       case 'Notifications':
+        this.setState({activeItem: name});
         this.props.history.push(linkurl.notifications);
         break;
+      case 'myProfile':
+        console.log('off to my profile');
+        this.props.history.push('/profile/' + this.props.profile.id);
+        // console.log(this.props.profile);
+        break;
     }
-  }
+  };
 
   render() {
     const {activeItem} = this.state;
