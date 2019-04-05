@@ -89,7 +89,11 @@ export class PostDetails extends Component {
   };
   handlePostCommentSubmit = e => {
     e.preventDefault();
-    this.props.createPostCommentActionType({...this.state.postComment}, this.props.postid);
+    console.log('projec???', this.props.project);
+    this.props.createPostCommentActionType({
+      ...this.state.postComment,
+      postCreatorId: this.props.project.userId,
+    }, this.props.postid);
     this.setState({
       ...this.state,
       postComment: {

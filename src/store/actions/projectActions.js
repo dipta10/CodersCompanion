@@ -56,6 +56,33 @@ export const createProject = (project, myProfile) => {
 };
 
 
+const createNotificationForCommentCreation = (postId, commentId, userId, postCreatorId, firestore, firstName, lastName, reply) => {
+
+  if (!reply) {
+    console.log('here for no reply');
+    firestore.collection('notifications').add({
+      type: 'comment',
+      userId: userId,
+      postId: postId,
+      creationTime: new Date(),
+      userName: firstName + ' ' + lastName,
+      postCreatorId: postCreatorId,
+      commentId: commentId,
+    }).then((res) => {
+      firestore.collection('notifications').doc(res.id).update({
+        id: res.id,
+      });
+    }).catch(err => {
+      console.log('error whole creating notification for comment creation', err);
+    });
+  } else {
+    console.log('here for reply');
+
+  }
+
+}
+
+
 export const createComment = (comment, postId) => {
   return (dispatch, getState, {getFirebase, getFirestore}) => {
     // make async call to database
@@ -73,6 +100,8 @@ export const createComment = (comment, postId) => {
       firestore.collection('comments').doc(res.id).update({
         id: res.id,
       });
+
+      createNotificationForCommentCreation(postId, res.id, userid, comment.postCreatorId, firestore, profile.firstName, profile.lastName, false);
 
       dispatch({
         type: keyword.createPostCommentActionType, comment: comment

@@ -5,10 +5,28 @@ import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import {Redirect} from 'react-router-dom'
 import {Feed, Container} from 'semantic-ui-react'
+import {Icon, Grid, Menu, Segment} from 'semantic-ui-react'
 import imageJenny from '../../jenny.jpg'
 import {Link} from 'react-router-dom'
+import AllFeed from "../Feed/AllFeed";
+import MyPostsFeed from "../Feed/MyPostsFeed";
+import PostsFeed from "../Feed/PostsFeed";
 
 export class Notifications extends Component {
+
+  state = {
+    activeItem: 'all',
+    sortOn: 'creationTime',
+  };
+  handleItemClick = (e, {name}) => {
+    console.log('hola');
+    console.log('name:', name);
+    this.setState({
+      ...this.state,
+      activeItem: name,
+    })
+  }
+
   render() {
     const {notifications} = this.props;
     console.log('props noti', this.props);
@@ -18,35 +36,32 @@ export class Notifications extends Component {
 
     return (
       <Container style={{marginTop: "10px"}}>
-        <Feed>
-          {notifications && notifications.map(item => {
-            if (this.props.auth.uid !== item.userId) return (
-              <Feed.Event key={item.id}>
-                <Feed.Label image={imageJenny}/>
-                <Feed.Content>
-                  <Feed.Date>{moment(item.creationTime.toDate()).fromNow()}</Feed.Date>
-                  <Feed.Summary>
-                    <Link to={'/profile/' + item.userId}>{item.userName} </Link>
-                    <Link to={'/post/' + item.postId}>
-                    </Link>
-                    {item.type === 'post' &&
-                    <span>
-                      Created a new<span> </span>
-                    <Link to={'/post/' + item.postId}>
-                      Post
-                    </Link>
-                    </span>
-                    }
-                    {
-                      item.type === 'join' &&
-                      <span> from your Institution Joined the party</span>
-                    }
-                  </Feed.Summary>
-                </Feed.Content>
-              </Feed.Event>
-            )
-          })}
-        </Feed>
+
+        <Grid style={{}}>
+          <Grid.Column width={4}>
+            <Menu fluid vertical tabular>
+              <Menu.Item name='all' active={this.state.activeItem === 'all'} onClick={this.handleItemClick}>
+                All
+              </Menu.Item>
+              <Menu.Item name='myPosts' active={this.state.activeItem === 'myPosts'} onClick={this.handleItemClick}>
+                My Posts & Comments
+              </Menu.Item>
+              <Menu.Item name='posts' active={this.state.activeItem === 'posts'}
+                         onClick={this.handleItemClick}>
+                Posts & Comments
+              </Menu.Item>
+              <Menu.Item name='friendRequests' active={this.state.activeItem === 'friendRequests'}
+                         onClick={this.handleItemClick}>
+                Friend Requests
+              </Menu.Item>
+            </Menu>
+          </Grid.Column>
+          <Grid.Column stretched width={12}>
+            { this.state.activeItem === 'all' && <AllFeed notifications={notifications} />}
+            { this.state.activeItem === 'myPosts' && <MyPostsFeed notifications={notifications} />}
+            { this.state.activeItem === 'posts' && <PostsFeed notifications={notifications} />}
+          </Grid.Column>
+        </Grid>
       </Container>
     );
   }
@@ -68,50 +83,3 @@ export default compose(
   ])
 )(Notifications);
 
-// export default Notifications;
-
-
-{/*<div className="container">*/
-}
-{/*<div className="section">*/
-}
-{/*<div className="card z-depth-0">*/
-}
-{/*<div className="card-content">*/
-}
-{/*<span className="card-title">Notificaitons</span>*/
-}
-{/*<ul className="notifications">*/
-}
-{/*{ notifications && notifications.map((item) => {*/
-}
-{/*return (*/
-}
-{/*<li key={item.id}>*/
-}
-{/*<span className="pink-text"> {item.user}</span>*/
-}
-{/*<span> {item.content}</span>*/
-}
-{/*<div className="grey-text note-date">*/
-}
-{/*{moment(item.time.toDate()).fromNow()}*/
-}
-{/*</div>*/
-}
-{/*</li>*/
-}
-{/*);*/
-}
-{/*}) }*/
-}
-{/*</ul>*/
-}
-{/*</div>*/
-}
-{/*</div>*/
-}
-{/*</div>*/
-}
-{/*</div>*/
-}

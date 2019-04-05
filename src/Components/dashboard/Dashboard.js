@@ -83,9 +83,7 @@ export class Dashboard extends Component {
         </Grid.Column>
 
         <Grid.Column stretched width={12}>
-          <Segment>
             <PostList projects={projects}/>
-          </Segment>
         </Grid.Column>
       </Grid>
 
