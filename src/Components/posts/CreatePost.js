@@ -49,7 +49,7 @@ export class CreatePost extends Component {
     if (auth.uid == null) return <Redirect to='/signin'/>;
 
     return (
-      <Container>
+      <Container style={{ marginTop: '5em' }}>
         <Segment>
           <Form>
             <TextArea rows={2} placeholder='Title' onChange={this.handleChange} value={this.state.title} id='title' />

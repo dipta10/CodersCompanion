@@ -13,7 +13,7 @@ import ProfileActivityFeed from "./Feed/ProfileActivityFeed";
 import ProfilePostsFeed from "./Feed/ProfilePostsFeed";
 
 class Profile extends Component {
-  LoaderExampleInlineCentered = () => <Loader style={{marginTop: "20px"}} active inline='centered' size='large'/>
+  LoaderExampleInlineCentered = () => <Loader style={{marginTop: "10em"}} active inline='centered' size='large'/>
 
   panes = [
     { menuItem: 'Posts', render: () =>
@@ -77,7 +77,7 @@ class Profile extends Component {
 
       if (profile.id !== null) {
         return (
-          <Container style={{marginTop: "10px", marginBottom: "10px"}} textAlign='center'>
+          <Container style={{marginTop: "5em", marginBottom: "10px"}} textAlign='center'>
 
             <Image circular centered bordered large src={messi}/>
             <h2 style={{color: mycolor}}>{profile && profile.firstName + ' ' + profile.lastName}</h2>

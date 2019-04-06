@@ -149,7 +149,7 @@ export class PostDetails extends Component {
 
     if (project != null) {
       return (
-        <Container className="">
+        <Container className="" style={{marginTop: "5em"}} >
 
           <Container>
             <Segment>
@@ -252,7 +252,7 @@ export class PostDetails extends Component {
     }
     else {
       return (
-        <Segment>
+        <Segment style={{marginTop: "5em"}} >
           <Loader active/>
 
         </Segment>

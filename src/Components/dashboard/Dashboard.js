@@ -7,6 +7,8 @@ import {compose} from 'redux'
 import {Redirect} from 'react-router-dom'
 import {messi} from '../../messi.jpg'
 import {Label, Container, Icon, Grid, Menu, Segment} from 'semantic-ui-react'
+import ProfilePostsFeed from "../Feed/ProfilePostsFeed";
+import DashboardPostsFeed from "../Feed/DashboardPostsFeed";
 
 
 export class Dashboard extends Component {
@@ -60,7 +62,7 @@ export class Dashboard extends Component {
     }
 
     return (
-      <Grid style={{}}>
+      <Grid style={{ marginTop: '2.8em' }} >
         <Grid.Column width={4}>
           <Menu fluid vertical tabular>
             <Menu.Item name='public' active={this.state.activeItem === 'public'} onClick={this.handleItemClick}/>
@@ -74,16 +76,15 @@ export class Dashboard extends Component {
               Hot
             </Menu.Item>
             <Menu.Item
-              name='notifications'
-              active={this.state.activeItem === 'notifications'}
+              name='search'
+              active={this.state.activeItem === 'search'}
               onClick={this.handleItemClick}
-            >Notification
+            >Search
             </Menu.Item>
           </Menu>
         </Grid.Column>
-
-        <Grid.Column stretched width={12}>
-            <PostList projects={projects}/>
+        <Grid.Column style={{marginTop: "1em"}} stretched width={12}>
+          <DashboardPostsFeed posts={projects} />
         </Grid.Column>
       </Grid>
 

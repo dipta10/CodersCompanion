@@ -35,7 +35,7 @@ export class Notifications extends Component {
     if (!auth.uid) return <Redirect to='/signin'/>;
 
     return (
-      <Container style={{marginTop: "10px"}}>
+      <Container style={{ marginTop: '5em' }}>
 
         <Grid style={{}}>
           <Grid.Column width={4}>

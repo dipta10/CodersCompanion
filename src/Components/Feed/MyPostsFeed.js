@@ -40,7 +40,12 @@ class MyPostsFeed extends Component {
                     <span> from your Institution Joined the party</span>
                   }
                   {
-                    item.type === 'commentReply' && null
+                    item.type === 'commentReply' && item.parentCommentCreatorId === this.props.auth.uid &&
+                    <span> replied to your <span></span>
+                          <Link to={'/post/' + item.postId}>
+                          comment
+                          </Link>
+                        </span>
                   }
                   {item.type === 'comment' &&
                   item.postCreatorId !== this.props.auth.uid &&

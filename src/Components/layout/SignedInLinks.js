@@ -58,7 +58,7 @@ export class SignedInLinks extends Component {
     const {activeItem} = this.state;
     return (
       <div>
-        <Menu pointing primary>
+        <Menu fixed='top' pointing primary>
           {/*<Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick}/>*/}
           <Menu.Item>
             <img src={logo}/>
