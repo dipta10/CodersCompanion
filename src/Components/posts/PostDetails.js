@@ -11,6 +11,7 @@ import {
   List, Divider, Header, Container, Button, Form,
   Icon, Label, Placeholder, Loader, Segment, Card
 } from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
 
 const queryable = require('query-objects');
 const ReactMarkdown = require('react-markdown')
@@ -162,7 +163,7 @@ export class PostDetails extends Component {
               <List>
                 <List.Item>
                   <List.Icon name='user'/>
-                  <List.Content>Post by {project.username}</List.Content>
+                  <List.Content>Posted by <Link to={'/profile/' + project.userId}>{project.username}</Link></List.Content>
                 </List.Item>
                 <List.Item>
                   <List.Icon name='wait'/>

@@ -6,21 +6,37 @@ import messi from '../messi.jpg'
 import Table from 'rc-table';
 import moment from 'moment';
 import chooseColor from '../keyword';
-
 import {
-  Container, Image, Divider, Loader, Feed
+  Container, Image, Divider, Loader, Feed, Tab
 } from 'semantic-ui-react'
+import ProfileActivityFeed from "./Feed/ProfileActivityFeed";
+import ProfilePostsFeed from "./Feed/ProfilePostsFeed";
 
 class Profile extends Component {
   LoaderExampleInlineCentered = () => <Loader style={{marginTop: "20px"}} active inline='centered' size='large'/>
 
+  panes = [
+    { menuItem: 'Posts', render: () =>
+        <Tab.Pane attached={false}>
+          {this.props.posts && <ProfilePostsFeed posts={this.props.posts} profileId={this.props.userId} />}
+        </Tab.Pane>
+    },
+    { menuItem: 'Activity', render: () =>
+        <Tab.Pane attached={false}>
+          {this.props.notifications && <ProfileActivityFeed notifications={this.props.notifications} profileId={this.props.userId}/>}
+        </Tab.Pane>
+    },
+  ]
+
+  TabExampleSecondaryPointing = () => (
+    <Tab menu={{ secondary: true, pointing: true }} panes={this.panes} />
+  )
 
   render() {
-    console.log(this.props);
     const uid = this.props.userId;
     const users = this.props.users;
     var profile = null;
-    console.log('props sent', this.props);
+    const { notifications } = this.props;
 
     var columns = [
       {
@@ -45,34 +61,45 @@ class Profile extends Component {
       if (user.id === uid) {
         profile = user;
         dataa = [
-          {upVote: user.upVote, downVote: user.downVote, reputation: user.reputation, totalPosts: user.totalPosts, key: '1'},
+          {
+            upVote: user.upVote,
+            downVote: user.downVote,
+            reputation: user.reputation,
+            totalPosts: user.totalPosts,
+            key: '1'
+          },
         ];
       }
     });
-    console.log('prof', profile);
     const mycolor = chooseColor(profile ? profile.reputation : 0);
 
-    if (profile) return (
+    if (profile)
 
+      if (profile.id !== null) {
+        return (
+          <Container style={{marginTop: "10px", marginBottom: "10px"}} textAlign='center'>
 
-      <Container style={{marginTop: "10px", marginBottom: "10px"}} textAlign='center'>
+            <Image circular centered bordered large src={messi}/>
+            <h2 style={{color: mycolor}}>{profile && profile.firstName + ' ' + profile.lastName}</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, nisi.</p>
+            <span style={{}} className=''>
+            Joined {moment(profile.creationTime.toDate()).fromNow()}
+            </span>
 
-        <Image circular centered bordered large src={messi}/>
-        {console.log(this.props)}
-        <h2 style={{color: mycolor}}>{profile && profile.firstName + ' ' + profile.lastName}</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, nisi.</p>
-        <span style={{}} className=''>
-          Joined {moment(profile.creationTime.toDate()).fromNow()}
-        </span>
+            <Divider/>
+            <Table centered columns={columns} data={dataa}/>
+            <Divider/>
 
+            {this.TabExampleSecondaryPointing()}
 
-        <Divider/>
-        <Table centered columns={columns} data={dataa}/>
-        <Divider/>
+          </Container>
 
-      </Container>
-
-    );
+        );
+      } else {
+        return (
+          <h1>NOT FOUND</h1>
+        );
+      }
     else return (this.LoaderExampleInlineCentered());
   }
 }
@@ -89,6 +116,7 @@ const mapStateToProps = (state, ownProps) => {
     users: state.firestore.ordered.users,
     notifications: state.firestore.ordered.notifications,
     userId: id,
+    posts: state.firestore.ordered.posts,
   }
 };
 
@@ -103,7 +131,8 @@ export default compose(
 
   firestoreConnect([
     {collection: 'users'},
-    {collection: 'notifications', limit: 50, orderBy: ['time', 'desc']}
+    {collection: 'notifications', orderBy: ['creationTime', 'desc']},
+    {collection: 'posts', orderBy: ['creationTime', 'desc']}
   ])
 )(Profile);
 

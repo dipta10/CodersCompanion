@@ -4,6 +4,7 @@ import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import {Button, Comment, Form, Header} from 'semantic-ui-react'
 import moment from 'moment'
+import {Link} from 'react-router-dom'
 import {createPostCommentReply} from "../store/actions/projectActions";
 
 class CustomComment extends Component {
@@ -95,12 +96,16 @@ class CustomComment extends Component {
         <Comment id={this.props.classId}>
           <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/elliot.jpg'/>
           <Comment.Content>
-            <Comment.Author as='a'>{mycomment.username}</Comment.Author>
+
+            <Link to={'/profile/' + mycomment.userId}>
+              <Comment.Author as='a'>{mycomment.username}</Comment.Author>
+            </Link>
             <Comment.Metadata>
               <div>
                 {moment(mycomment.creationTime.toDate()).fromNow()}
               </div>
             </Comment.Metadata>
+
             <Comment.Text>
               <p>{mycomment.content}</p>
             </Comment.Text>
