@@ -11,16 +11,20 @@ import {Link} from 'react-router-dom'
 import AllFeed from "../Feed/AllFeed";
 import MyPostsFeed from "../Feed/MyPostsFeed";
 import PostsFeed from "../Feed/PostsFeed";
+import FriendRequestNotification from "../Feed/FriendRequestNotification";
+import {resetNotificationCount} from "../../store/actions/projectActions";
 
 export class Notifications extends Component {
+
+  componentDidMount () {
+    this.props.resetNotificationCount();
+  }
 
   state = {
     activeItem: 'all',
     sortOn: 'creationTime',
   };
   handleItemClick = (e, {name}) => {
-    console.log('hola');
-    console.log('name:', name);
     this.setState({
       ...this.state,
       activeItem: name,
@@ -29,7 +33,6 @@ export class Notifications extends Component {
 
   render() {
     const {notifications} = this.props;
-    console.log('props noti', this.props);
 
     const auth = this.props.auth;
     if (!auth.uid) return <Redirect to='/signin'/>;
@@ -60,6 +63,7 @@ export class Notifications extends Component {
             { this.state.activeItem === 'all' && <AllFeed notifications={notifications} />}
             { this.state.activeItem === 'myPosts' && <MyPostsFeed notifications={notifications} />}
             { this.state.activeItem === 'posts' && <PostsFeed notifications={notifications} />}
+            { this.state.activeItem === 'friendRequests' && <FriendRequestNotification/>}
           </Grid.Column>
         </Grid>
       </Container>
@@ -76,8 +80,15 @@ const mapStateToProps = (state) => {
   }
 };
 
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    resetNotificationCount: () => dispatch(resetNotificationCount()),
+  };
+};
+
 export default compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect([
     {collection: 'notifications', orderBy: ['creationTime', 'desc']}
   ])

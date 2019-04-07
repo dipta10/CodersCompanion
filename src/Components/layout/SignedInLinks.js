@@ -56,6 +56,7 @@ export class SignedInLinks extends Component {
 
   render() {
     const {activeItem} = this.state;
+    console.log('profile', this.props.profile);
     return (
       <div>
         <Menu fixed='top' pointing primary>
@@ -84,10 +85,11 @@ export class SignedInLinks extends Component {
             onClick={this.handleItemClick}
           >
             <Icon name='bell' />
-            <Label circular color="red">
-              2
-            </Label>
+            <span style={{color: "red"}}>{this.props.profile.notificationCount !== 0 ? this.props.profile.notificationCount : null}</span>
           </Menu.Item>
+
+
+
 
           {/*<Menu.Menu position='right'>*/}
             {/*<Menu.Item*/}

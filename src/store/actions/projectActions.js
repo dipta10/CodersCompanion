@@ -59,7 +59,6 @@ export const createProject = (project, myProfile) => {
 const createNotificationForCommentCreation = (postId, commentId, userId, postCreatorId, firestore, firstName, lastName, reply) => {
 
   if (!reply) {
-    console.log('here for no reply');
     firestore.collection('notifications').add({
       type: 'comment',
       userId: userId,
@@ -81,7 +80,6 @@ const createNotificationForCommentCreation = (postId, commentId, userId, postCre
 
 const createNotificationForCommentReplyCreation = (userId, postId, postCreatorId, parentCommentId, parentCommentCreatorId, firstName, lastName, commentId, firestore) => {
 
-    console.log('here for no reply');
     firestore.collection('notifications').add({
       type: 'commentReply',
       userId: userId,
@@ -101,13 +99,45 @@ const createNotificationForCommentReplyCreation = (userId, postId, postCreatorId
     });
 };
 
-
-export const createComment = (comment, postId) => {
+export const resetNotificationCount = () => {
   return (dispatch, getState, {getFirebase, getFirestore}) => {
     // make async call to database
     const firestore = getFirestore();
     const profile = getState().firebase.profile; // no 30
     const userid = getState().firebase.auth.uid;
+    firestore.collection('users').doc(userid).update({
+      notificationCount: 0,
+    });
+  };
+}
+
+const incrementCount = (userId, firestore) => {
+  // firestore.collection('users').doc(userId).update({
+  //   notificationCount: count+1,
+  // });
+  firestore.collection('users').doc(userId).get().then(function(doc) {
+    if (doc.exists) {
+      console.log('document is:', doc.data());
+      const count = doc.data().notificationCount;
+      firestore.collection('users').doc(userId).update({
+        notificationCount: count + 1,
+      });
+    } else {
+      console.log('document not found for that user! :(');
+    }
+  }).catch(err => {
+    console.log('error in incrementCount()', err);
+  });
+}
+
+export const createComment = (comment, postId) => {
+  return (dispatch, getState, {getFirebase, getFirestore}) => {
+    // make async call to database
+    console.log('comment creation:', comment);
+    const firestore = getFirestore();
+    const profile = getState().firebase.profile; // no 30
+    const userid = getState().firebase.auth.uid;
+    console.log('comment creation here', comment);
     firestore.collection('comments').add({
       ...comment,
       username: profile.firstName + ' ' + profile.lastName,
@@ -121,6 +151,11 @@ export const createComment = (comment, postId) => {
       });
 
       createNotificationForCommentCreation(postId, res.id, userid, comment.postCreatorId, firestore, profile.firstName, profile.lastName, false);
+
+      if (comment.postCreatorId !== userid) {
+        console.log('here i am');
+        incrementCount(comment.postCreatorId, firestore);
+      }
 
       dispatch({
         type: keyword.createPostCommentActionType, comment: comment
@@ -161,9 +196,10 @@ export const createPostCommentReply = (comment, parentChild) => {
         child: parentChild.concat(res.id),
       });
 
-      console.log('comment action: ', comment);
 
       createNotificationForCommentReplyCreation(userid, comment.postId, comment.postCreatorId, comment.parent, comment.parentCommentCreatorId, profile.firstName, profile.lastName, res.id, firestore);
+
+      incrementCount(comment.parentCommentCreatorId, firestore);
 
       dispatch({
         type: keyword.createPostCommentReplyActionType, comment: comment
@@ -186,8 +222,6 @@ export const createPostVote = (value, found, id, values, his_profile) => {
     const firestore = getFirestore();
     const profile = getState().firebase.profile; // no 30
     const userid = getState().firebase.auth.uid;
-    console.log(id);
-    console.log('profile here', his_profile);
 
     if (found) {
       firestore.collection('postVotes').doc(id).update({
@@ -266,6 +300,6 @@ export const createPostVote = (value, found, id, values, his_profile) => {
       });
     };
   }
-
-
 };
+
+

@@ -7,7 +7,7 @@ import Table from 'rc-table';
 import moment from 'moment';
 import chooseColor from '../keyword';
 import {
-  Container, Image, Divider, Loader, Feed, Tab
+  Container, Image, Divider, Loader, Feed, Tab, Button
 } from 'semantic-ui-react'
 import ProfileActivityFeed from "./Feed/ProfileActivityFeed";
 import ProfilePostsFeed from "./Feed/ProfilePostsFeed";
@@ -85,6 +85,13 @@ class Profile extends Component {
             <span style={{}} className=''>
             Joined {moment(profile.creationTime.toDate()).fromNow()}
             </span>
+            <br/>
+            <br/>
+            <Button.Group>
+              <Button positive={true}>Following</Button>
+              <Button.Or text='ou' />
+              <Button>Unfollow</Button>
+            </Button.Group>
 
             <Divider/>
             <Table centered columns={columns} data={dataa}/>

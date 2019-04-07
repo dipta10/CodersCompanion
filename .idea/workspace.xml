@@ -2,13 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="018a1311-9186-4e41-8cc4-b8ae548a9b38" name="Default" comment="j">
-      <change beforePath="$PROJECT_DIR$/src/Components/Feed/MyPostsFeed.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Feed/MyPostsFeed.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/CustomComment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/CustomComment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Feed/DashboardPostsFeed.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Feed/DashboardPostsFeed.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Feed/ProfilePostsFeed.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Feed/ProfilePostsFeed.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Profile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/dashboard/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/dashboard/Dashboard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/dashboard/Notifications.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/dashboard/Notifications.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/layout/SignedInLinks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/layout/SignedInLinks.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/posts/CreatePost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/posts/CreatePost.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/posts/PostDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/posts/PostDetails.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/projectActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/projectActions.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,23 +28,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AllFeed.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AllFeed.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Components/Feed/AllFeed.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="38" selection-start-line="38" selection-end-line="38" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="264">
+              <caret line="41" column="58" selection-start-line="41" selection-start-column="58" selection-end-line="41" selection-end-column="58" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyPostsFeed.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Components/Feed/MyPostsFeed.js">
+      <file leaf-file-name="CustomComment.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Components/CustomComment.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="41" column="18" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="18" />
+            <state relative-caret-position="158">
+              <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -50,7 +53,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>state = {</find>
       <find>setState</find>
       <find>filter(1</find>
       <find>setState(</find>
@@ -64,7 +66,6 @@
       <find>Error creating post comment reply comment</find>
       <find>childComment</find>
       <find>button</find>
-      <find>order</find>
       <find>&lt;Container</find>
       <find>Friends of</find>
       <find>POST</find>
@@ -79,6 +80,8 @@
       <find>createPostCommentReply</find>
       <find>console.log('mycomment</find>
       <find>createPostCommentReply(</find>
+      <find>createComment</find>
+      <find>order</find>
       <find>&lt;CustomComment</find>
     </findStrings>
   </component>
@@ -111,19 +114,22 @@
         <option value="$PROJECT_DIR$/src/Components/Feed/MyPostFeed.js" />
         <option value="$PROJECT_DIR$/src/Components/Feed/MyPostFeeds.js" />
         <option value="$PROJECT_DIR$/src/Components/Feed/PostsFeed.js" />
-        <option value="$PROJECT_DIR$/src/store/actions/projectActions.js" />
         <option value="$PROJECT_DIR$/src/Components/Feed/ProfileActivityFeed.js" />
-        <option value="$PROJECT_DIR$/src/Components/Feed/ProfilePostsFeed.js" />
-        <option value="$PROJECT_DIR$/src/Components/CustomComment.js" />
-        <option value="$PROJECT_DIR$/src/Components/layout/SignedInLinks.js" />
-        <option value="$PROJECT_DIR$/src/Components/posts/CreatePost.js" />
-        <option value="$PROJECT_DIR$/src/Components/dashboard/Notifications.js" />
-        <option value="$PROJECT_DIR$/src/Components/Profile.js" />
-        <option value="$PROJECT_DIR$/src/Components/Feed/DashboardPostsFeed.js" />
-        <option value="$PROJECT_DIR$/src/Components/dashboard/Dashboard.js" />
-        <option value="$PROJECT_DIR$/src/Components/posts/PostDetails.js" />
-        <option value="$PROJECT_DIR$/src/Components/Feed/AllFeed.js" />
         <option value="$PROJECT_DIR$/src/Components/Feed/MyPostsFeed.js" />
+        <option value="$PROJECT_DIR$/src/Components/Feed/DashboardPostsFeed.js" />
+        <option value="$PROJECT_DIR$/src/Components/Feed/ProfilePostsFeed.js" />
+        <option value="$PROJECT_DIR$/src/Components/Profile.js" />
+        <option value="$PROJECT_DIR$/src/Components/Feed/FrendRequestNotification.js" />
+        <option value="$PROJECT_DIR$/src/Components/Feed/FriendRequestNotification.js" />
+        <option value="$PROJECT_DIR$/src/Components/dashboard/SearchExampleStandard.js" />
+        <option value="$PROJECT_DIR$/src/Components/posts/CreatePost.js" />
+        <option value="$PROJECT_DIR$/src/Components/layout/SignedInLinks.js" />
+        <option value="$PROJECT_DIR$/src/Components/dashboard/Dashboard.js" />
+        <option value="$PROJECT_DIR$/src/Components/dashboard/Notifications.js" />
+        <option value="$PROJECT_DIR$/src/store/actions/projectActions.js" />
+        <option value="$PROJECT_DIR$/src/Components/posts/PostDetails.js" />
+        <option value="$PROJECT_DIR$/src/Components/CustomComment.js" />
+        <option value="$PROJECT_DIR$/src/Components/Feed/AllFeed.js" />
       </list>
     </option>
   </component>
@@ -179,8 +185,14 @@
               <item name="CodersCompanion" type="b2602c69:ProjectViewProjectNode" />
               <item name="CodersCompanion" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Components" type="462c0819:PsiDirectoryNode" />
-              <item name="Feed" type="462c0819:PsiDirectoryNode" />
+              <item name="store" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CodersCompanion" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CodersCompanion" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="store" type="462c0819:PsiDirectoryNode" />
+              <item name="actions" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -252,18 +264,19 @@
       <workItem from="1554208381302" duration="31000" />
       <workItem from="1554365704300" duration="28332000" />
       <workItem from="1554493612852" duration="14176000" />
-      <workItem from="1554552667295" duration="4956000" />
+      <workItem from="1554552667295" duration="5461000" />
+      <workItem from="1554622118703" duration="10527000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134654000" />
+    <option name="totallyTimeSpent" value="145686000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1193" height="1080" extended-state="0" />
+    <frame x="0" y="0" width="1200" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.2925398" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.19166666" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -296,27 +309,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/store/reducers/projectReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/posts/PostList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/dashboard/Dashboard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/posts/PostSummary.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
@@ -439,13 +431,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/testpost">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="2" selection-start-line="22" selection-start-column="2" selection-end-line="22" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/auth/SignIn.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="226">
@@ -510,13 +495,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/Feed/MyPostFeed.js" />
     <entry file="file://$PROJECT_DIR$/src/Components/Feed/MyPostFeeds.js" />
-    <entry file="file://$PROJECT_DIR$/src/store/actions/projectActions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="165" column="53" selection-start-line="165" selection-start-column="53" selection-end-line="165" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/react-router-dom/Redirect.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -540,23 +518,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/Feed/ProfilePostsFeed.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="36" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/CustomComment.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="92" column="11" selection-start-line="92" selection-start-column="11" selection-end-line="92" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/layout/Navbar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="185">
@@ -571,69 +532,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="199">
           <caret line="33" column="17" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/layout/SignedInLinks.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="60" column="25" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/posts/CreatePost.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="55" column="17" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/dashboard/Notifications.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/Profile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="15" column="70" selection-start-line="15" selection-start-column="70" selection-end-line="15" selection-end-column="70" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/Feed/DashboardPostsFeed.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/dashboard/Dashboard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="74" column="32" selection-start-line="74" selection-start-column="32" selection-end-line="74" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -647,20 +545,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/posts/PostDetails.js">
+    <entry file="file://$PROJECT_DIR$/src/testpost">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="650">
-          <caret line="254" column="44" selection-start-line="254" selection-start-column="44" selection-end-line="254" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="324">
+          <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/Feed/AllFeed.js">
+    <entry file="file://$PROJECT_DIR$/src/Components/Feed/DashboardPostsFeed.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
+        <state relative-caret-position="258">
+          <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
@@ -669,11 +564,141 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/Feed/MyPostsFeed.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="41" column="18" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="18" />
+        <state relative-caret-position="216">
+          <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Feed/ProfilePostsFeed.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Feed/FrendRequestNotification.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="873">
+          <caret line="70" column="16" selection-start-line="70" selection-start-column="16" selection-end-line="70" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Profile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Feed/FriendRequestNotification.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/dashboard/SearchExampleStandard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/posts/CreatePost.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="98" column="4" selection-start-line="98" selection-start-column="4" selection-end-line="98" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/dashboard/Dashboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="18" column="2" selection-start-line="18" selection-start-column="2" selection-end-line="18" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/layout/SignedInLinks.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-293">
+          <caret line="71" column="27" selection-start-line="71" selection-start-column="27" selection-end-line="71" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/dashboard/Notifications.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="20" column="2" selection-start-line="20" selection-start-column="2" selection-end-line="20" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/actions/projectActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="177" column="14" selection-start-line="177" selection-start-column="14" selection-end-line="177" selection-end-column="14" />
+          <folding>
+            <element signature="e#128#539#0" />
+            <element signature="e#594#1567#0" />
+            <element signature="e#1701#2210#0" />
+            <element signature="e#2383#2971#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/posts/PostDetails.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="284" column="23" lean-forward="true" selection-start-line="284" selection-start-column="23" selection-end-line="284" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/CustomComment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Feed/AllFeed.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="41" column="58" selection-start-line="41" selection-start-column="58" selection-end-line="41" selection-end-column="58" />
         </state>
       </provider>
     </entry>

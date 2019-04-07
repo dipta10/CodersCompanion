@@ -7,6 +7,7 @@ import {Feed, Icon} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import {Redirect} from 'react-router-dom'
 import imageJenny from '../../jenny.jpg'
+import MarkdownRenderer from 'react-markdown-renderer';
 
 class ProfilePostsFeed extends Component {
   render() {
@@ -31,7 +32,8 @@ class ProfilePostsFeed extends Component {
                   {/*</span>*/}
                   <Feed.Date>{moment(item.creationTime.toDate()).fromNow()}</Feed.Date>
                   <Link to={'/post/' + item.id}>
-                    <p style={{color: "black"}}>{item.content}</p>
+                    <p style={{color: "black"}}>{item.title}</p>
+                    <MarkdownRenderer style={{color: "black", 'font-weight': 'normal'}} markdown={item.content.replace(/%20NEW_LINE19382%/g, '\n')}/>
                   </Link>
                 </Feed.Summary>
                 <Feed.Meta>

@@ -31,7 +31,7 @@ class ProfilePostsFeed extends Component {
                   {/*</span>*/}
                   <Feed.Date>{moment(item.creationTime.toDate()).fromNow()}</Feed.Date>
                   <Link to={'/post/' + item.id}>
-                    <p style={{color: "black"}}>{item.content}</p>
+                    <p style={{color: "black"}}>{item.title}</p>
                   </Link>
                 </Feed.Summary>
                 <Feed.Meta>

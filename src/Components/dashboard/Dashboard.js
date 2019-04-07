@@ -9,6 +9,7 @@ import {messi} from '../../messi.jpg'
 import {Label, Container, Icon, Grid, Menu, Segment} from 'semantic-ui-react'
 import ProfilePostsFeed from "../Feed/ProfilePostsFeed";
 import DashboardPostsFeed from "../Feed/DashboardPostsFeed";
+import SearchExampleStandard from "./SearchExampleStandard";
 
 
 export class Dashboard extends Component {
@@ -61,6 +62,7 @@ export class Dashboard extends Component {
       }
     }
 
+
     return (
       <Grid style={{ marginTop: '2.8em' }} >
         <Grid.Column width={4}>
@@ -83,9 +85,14 @@ export class Dashboard extends Component {
             </Menu.Item>
           </Menu>
         </Grid.Column>
-        <Grid.Column style={{marginTop: "1em"}} stretched width={12}>
-          <DashboardPostsFeed posts={projects} />
+        {this.state.activeItem !== 'search' && <Grid.Column style={{marginTop: "1em"}} stretched width={12}>
+          <DashboardPostsFeed posts={projects}/>
         </Grid.Column>
+        }
+        {
+          this.state.activeItem === 'search' &&
+            <SearchExampleStandard style={{marginTop: "2em"}}/>
+        }
       </Grid>
 
 

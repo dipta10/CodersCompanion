@@ -9,7 +9,7 @@ import {createComment, createPostCommentReply, createPostVote} from "../../store
 import CustomComment from "../CustomComment";
 import {
   List, Divider, Header, Container, Button, Form,
-  Icon, Label, Placeholder, Loader, Segment, Card
+  Icon, Label, Placeholder, Loader, Segment, Card, Modal
 } from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 
@@ -149,7 +149,7 @@ export class PostDetails extends Component {
 
     if (project != null) {
       return (
-        <Container className="" style={{marginTop: "5em"}} >
+        <Container className="" style={{marginTop: "5em"}}>
 
           <Container>
             <Segment>
@@ -163,7 +163,8 @@ export class PostDetails extends Component {
               <List>
                 <List.Item>
                   <List.Icon name='user'/>
-                  <List.Content>Posted by <Link to={'/profile/' + project.userId}>{project.username}</Link></List.Content>
+                  <List.Content>Posted by <Link
+                    to={'/profile/' + project.userId}>{project.username}</Link></List.Content>
                 </List.Item>
                 <List.Item>
                   <List.Icon name='wait'/>
@@ -197,7 +198,7 @@ export class PostDetails extends Component {
                     labelPosition='right'>
               <Button basic color={postVoteButton.upVoteButton ? 'grey' : 'red'}>
                 <Icon name='arrow up'/>
-                UpVote
+                {/*UpVote*/}
               </Button>
 
               <Label as='a' basic color={postVoteButton.upVoteButton ? 'grey' : 'red'} pointing='left'>
@@ -215,7 +216,7 @@ export class PostDetails extends Component {
                     labelPosition='right'>
               <Button basic color={postVoteButton.downVoteButton ? 'grey' : 'blue'}>
                 <Icon name='arrow down'/>
-                DownVote
+                {/*DownVote*/}
               </Button>
               <Label as='a' basic color={postVoteButton.downVoteButton ? 'grey' : 'blue'} pointing='left'>
                 {project.downVote}
@@ -229,6 +230,44 @@ export class PostDetails extends Component {
                 {project.score}
               </Label>
             </Button>
+
+            <Button as='div' labelPosition='right'>
+            <Button basic animated='vertical'>
+              <Button.Content hidden>Subscribe</Button.Content>
+              <Button.Content visible>
+                <Icon name='feed'/>
+              </Button.Content>
+            </Button>
+            </Button>
+
+            {this.props.auth.uid === project.userId &&
+            <Modal trigger={
+              <Button as='div' labelPosition='right'>
+              <Button basic animated='vertical'>
+                <Button.Content hidden>Remove</Button.Content>
+                <Button.Content visible>
+                  <Icon name='trash'/>
+                </Button.Content>
+              </Button>
+              </Button>
+            } basic size='small'>
+              <Header icon='archive' content='Are you sure you want to remove the post?'/>
+              <Modal.Content>
+                <p>
+                  All the answers and comments of this post will be removed and you won't be able to retrieve it.
+                </p>
+              </Modal.Content>
+              <Modal.Actions>
+                <Button basic color='green' inverted>
+                  <Icon name='checkmark'/> No
+                </Button>
+                <Button color='red' inverted>
+                  <Icon name='remove'/> Yes
+                </Button>
+              </Modal.Actions>
+            </Modal>
+            }
+
           </Container>
 
           <Form reply style={{marginTop: "10px"}}>
@@ -243,7 +282,7 @@ export class PostDetails extends Component {
           {res == null && this.PlaceholderExampleHeaderImage()}
           {res && res.map(comment => {
             return (
-              <CustomComment  comments={comments} id={comment.id} key={comment.id} all={this.props}/>
+              <CustomComment comments={comments} id={comment.id} key={comment.id} all={this.props}/>
             );
           })}
 
@@ -252,7 +291,7 @@ export class PostDetails extends Component {
     }
     else {
       return (
-        <Segment style={{marginTop: "5em"}} >
+        <Segment style={{marginTop: "5em"}}>
           <Loader active/>
 
         </Segment>
@@ -263,27 +302,27 @@ export class PostDetails extends Component {
 
 
 const mapStateToProps = (state, ownProps) => {
-    const id = ownProps.match.params.id;
-    const projects = state.firestore.data.posts;
-    const project = projects ? projects[id] : null;
+  const id = ownProps.match.params.id;
+  const projects = state.firestore.data.posts;
+  const project = projects ? projects[id] : null;
 
-    return {
-      project: project,
-      postid: id,
-      auth: state.firebase.auth,
-      comments: state.firestore.ordered.comments,
-      postVotes: state.firestore.ordered.postVotes,
-      users: state.firestore.ordered.users,
-    }
-  };
+  return {
+    project: project,
+    postid: id,
+    auth: state.firebase.auth,
+    comments: state.firestore.ordered.comments,
+    postVotes: state.firestore.ordered.postVotes,
+    users: state.firestore.ordered.users,
+  }
+};
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-      createPostCommentActionType: (comment, postId) => dispatch(createComment(comment, postId)),
-      createPostCommentReply: (comment, parentChild) => dispatch(createPostCommentReply(comment, parentChild)),
-      createPostVote: (value, found, id, values, profile) => dispatch(createPostVote(value, found, id, values, profile)),
-    };
+  return {
+    createPostCommentActionType: (comment, postId) => dispatch(createComment(comment, postId)),
+    createPostCommentReply: (comment, parentChild) => dispatch(createPostCommentReply(comment, parentChild)),
+    createPostVote: (value, found, id, values, profile) => dispatch(createPostVote(value, found, id, values, profile)),
   };
+};
 
 export default compose(
   connect(
@@ -292,9 +331,8 @@ export default compose(
 
   firestoreConnect([
     {collection: 'posts'},
-    {collection: 'comments'},
+    {collection: 'comments', orderBy:['creationTime']},
     {collection: 'postVotes'},
     {collection: 'users'},
   ])
-)(PostDetails)
-;
+)(PostDetails);

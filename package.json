@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "faker": "^4.1.0",
     "filter-objects": "^2.1.1",
     "firebase": "^5.9.1",
+    "lodash": "^4.17.11",
     "materialize-css": "^1.0.0-rc.2",
     "moment": "^2.24.0",
     "query-objects": "0.0.6",
