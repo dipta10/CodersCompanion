@@ -57,6 +57,7 @@ class Profile extends Component {
       {upVote: 100, downVote: 200, reputation: -100, totalPosts: 21, key: '1'},
     ];
 
+
     users && users.forEach(user => {
       if (user.id === uid) {
         profile = user;
@@ -87,13 +88,16 @@ class Profile extends Component {
             </span>
             <br/>
             <br/>
+            {
+              this.props.auth.uid !== uid &&
             <Button.Group>
               <Button positive={true}>Following</Button>
               <Button.Or text='or' />
               <Button disabled>Unfollow</Button>
             </Button.Group>
+            }
 
-            <Divider/>
+            <Divider />
             <Table centered columns={columns} data={dataa}/>
             <Divider/>
 

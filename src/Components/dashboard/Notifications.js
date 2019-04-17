@@ -13,6 +13,7 @@ import MyPostsFeed from "../Feed/MyPostsFeed";
 import PostsFeed from "../Feed/PostsFeed";
 import FriendRequestNotification from "../Feed/FriendRequestNotification";
 import {resetNotificationCount} from "../../store/actions/projectActions";
+import {linkurl} from "../../keyword";
 
 export class Notifications extends Component {
 
@@ -33,9 +34,9 @@ export class Notifications extends Component {
 
   render() {
     const {notifications} = this.props;
+    // if (!auth) return <Redirect to={linkurl.signIn}/>;
 
     const auth = this.props.auth;
-    if (!auth.uid) return <Redirect to='/signin'/>;
 
     return (
       <Container style={{ marginTop: '5em' }}>

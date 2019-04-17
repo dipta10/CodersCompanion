@@ -11,21 +11,7 @@ import { Button, Divider, Container, Segment, Form, TextArea, Dropdown, Label } 
 
 export class CreatePost extends Component {
 
-  colors = [
-    'red',
-    'orange',
-    'yellow',
-    'olive',
-    'green',
-    'teal',
-    'blue',
-    'violet',
-    'purple',
-    'pink',
-    'brown',
-    'grey',
-    'black',
-  ]
+  colors = [ 'red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black', ];
 
   options = [
     { key: 'DFS', text: 'Angular', value: 'angular' },
@@ -96,7 +82,7 @@ export class CreatePost extends Component {
     return (
       <Container style={{ marginTop: '5em' }}>
         <Segment>
-          <Label color={this.colors[10-parseInt(this.state.title.length/10, 10)]} key={this.colors[0]}>
+          <Label style={{float: "right"}} color={this.colors[10-parseInt(this.state.title.length/10, 10)]} key={this.colors[0]}>
             {this.state.title.length}/100
           </Label>
           <Form>
