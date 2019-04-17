@@ -26,6 +26,10 @@ class CustomComment extends Component {
     const commentId = this.props.id;
     if (mycomment.type === 'post') {
       // post
+      if (this.state.content.trim().length == 0) {
+        alert('comment can not be empty!');
+        return;
+      }
       const uploadState = {
         ...this.state,
         content: this.state.content,

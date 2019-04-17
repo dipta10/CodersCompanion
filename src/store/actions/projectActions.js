@@ -179,7 +179,9 @@ export const createPostCommentReply = (comment, parentChild) => {
     const profile = getState().firebase.profile; // no 30
     const userid = getState().firebase.auth.uid;
 
+
     const refid = firestore.collection('comments').doc().id;
+
 
     firestore.collection('comments').add({
       ...comment,
@@ -196,6 +198,8 @@ export const createPostCommentReply = (comment, parentChild) => {
         child: parentChild.concat(res.id),
       });
 
+
+      if (userid == comment.parentCommentCreatorId) return;
 
       createNotificationForCommentReplyCreation(userid, comment.postId, comment.postCreatorId, comment.parent, comment.parentCommentCreatorId, profile.firstName, profile.lastName, res.id, firestore);
 

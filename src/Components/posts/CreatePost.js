@@ -7,9 +7,26 @@ import {Redirect} from 'react-router-dom'
 import MarkdownRenderer from 'react-markdown-renderer';
 import {keyword, linkurl, newline_firebase} from "../../keyword";
 import TextareaAutosize from 'react-textarea-autosize';
-import { Button, Divider, Container, Segment, Form, TextArea, Dropdown } from 'semantic-ui-react'
+import { Button, Divider, Container, Segment, Form, TextArea, Dropdown, Label } from 'semantic-ui-react'
 
 export class CreatePost extends Component {
+
+  colors = [
+    'red',
+    'orange',
+    'yellow',
+    'olive',
+    'green',
+    'teal',
+    'blue',
+    'violet',
+    'purple',
+    'pink',
+    'brown',
+    'grey',
+    'black',
+  ]
+
   options = [
     { key: 'DFS', text: 'Angular', value: 'angular' },
     { key: 'BFS', text: 'CSS', value: 'css' },
@@ -38,12 +55,19 @@ export class CreatePost extends Component {
     score: 0,
   };
   handleChange = e => {
+    if (e.target.id == 'title') {
+      if (e.target.value.length > 100) return;
+    }
     this.setState({
       [e.target.id]: e.target.value
     });
   };
   handleSubmit = e => {
     e.preventDefault();
+    if (this.state.content.trim().length == 0 || this.state.title.trim().length == 0) {
+      alert('title or description can not be empty');
+      return;
+    }
     let con = this.state.content.replace(/\n/g, newline_firebase);
     this.setState({
       ... this.state,
@@ -72,6 +96,9 @@ export class CreatePost extends Component {
     return (
       <Container style={{ marginTop: '5em' }}>
         <Segment>
+          <Label color={this.colors[10-parseInt(this.state.title.length/10, 10)]} key={this.colors[0]}>
+            {this.state.title.length}/100
+          </Label>
           <Form>
             <TextArea rows={2} placeholder='Title' onChange={this.handleChange} value={this.state.title} id='title' />
           </Form>
@@ -99,7 +126,6 @@ export class CreatePost extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     createProjectActionType: (project, myProfile) => dispatch(createProject(project, myProfile)),
-
   };
 }
 

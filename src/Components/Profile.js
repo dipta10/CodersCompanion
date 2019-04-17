@@ -89,8 +89,8 @@ class Profile extends Component {
             <br/>
             <Button.Group>
               <Button positive={true}>Following</Button>
-              <Button.Or text='ou' />
-              <Button>Unfollow</Button>
+              <Button.Or text='or' />
+              <Button disabled>Unfollow</Button>
             </Button.Group>
 
             <Divider/>
@@ -142,12 +142,5 @@ export default compose(
     {collection: 'posts', orderBy: ['creationTime', 'desc']}
   ])
 )(Profile);
-
-
-
-
-
-
-
 
 

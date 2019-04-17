@@ -37,6 +37,10 @@ export class SignUp extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
+    if (this.state.firstName.trim().length == 0 || this.state.firstName.trim().length == 0 || this.state.email.trim().length == 0) {
+      alert('you need to fill in all the fields')
+      return;
+    }
     this.props.signUp(this.state);
   };
 

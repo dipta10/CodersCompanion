@@ -91,7 +91,10 @@ export class PostDetails extends Component {
 
   handlePostCommentSubmit = e => {
     e.preventDefault();
-    console.log('that is me!');
+    if (this.state.postComment.content.trim().length == 0) {
+      alert('Comment can not be empty!');
+      return;
+    }
     this.props.createPostCommentActionType({
       ...this.state.postComment,
       postCreatorId: this.props.project.userId,
