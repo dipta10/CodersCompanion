@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+**Coders' Companion** is a website that helps competitive progammers all over the world lean new programming techniques, share ideas and discuss solutions with the other contestants.
+
 ### How to run:
 
 ```
@@ -19,10 +21,7 @@ I've changed the rules to `open` for some testing perposes. Onces it's done, the
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Visit this link to find out ERD, Database Info and 
 
 ## Screenshots:
 
