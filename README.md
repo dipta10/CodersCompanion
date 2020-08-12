@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-**Coders' Companion** is a website that helps competitive progammers all over the world lean new programming techniques, share ideas and discuss solutions with the other contestants.
+**Coders' Companion** is a website that helps competitive progammers all over the world lean new programming techniques, share ideas and discuss solutions with the other contestants. Here's a breif [screencast](https://drive.google.com/file/d/1nH5X-ZN0Ofoo6ph4jc2NqKJyyJW0MaEP/view?usp=sharing) of the project.
 
 ### How to run:
 
