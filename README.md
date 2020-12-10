@@ -43,5 +43,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ![](screenshots/Screenshot_25.png)
 
+### ERD:
 
+![](https://bn1304files.storage.live.com/y4m4UIy4tYFqS1lyxcAZo8euX911FqWopFWXyNgiIIPUpN2DRo3jmxDhCjS7g1ckyQOkeSzGgSl9xJPrt9IH_iYoWQagQDVc95zXARanXzaxHInO9P5QIJVZPFD5hPNEFNXYprs1TVBQBjrq-F8Gzze_9jr4rA3sthIzIrAF-J5ZmFx5hEIFKMFSdvh5FcjMaNl-9eHl8Ix6As1XpRbiC1Wfw/ERD%20Coders%27%20Companion%20%283%29.jpg?psid=1&width=455&height=581)
 
